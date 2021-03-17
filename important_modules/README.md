@@ -38,6 +38,21 @@ For Example:
     headers:
       Cookie: "{{ login.cookies_string }}"
 ```
+
+```YAML
+- name: Create a JIRA issue
+  uri:
+    url: https://your.jira.example.com/rest/api/2/issue/
+    user: your_username
+    password: your_pass
+    method: POST
+    body: "{{ lookup('file','issue.json') }}"
+    force_basic_auth: yes
+    status_code: 201
+    body_format: json
+
+```
+* More info about (Status code 201) [https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201]
 __2. Shell:__
 
 * The ```shell``` module takes the command name followed by a list of space-delimited arguments
