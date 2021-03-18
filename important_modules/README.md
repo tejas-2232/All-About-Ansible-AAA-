@@ -61,7 +61,7 @@ For Example:
     body_format: json
 
 ```
-* More info about (https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201)[Status code 201] 
+* More info about [Status code 201](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201) 
 
 
 
@@ -69,3 +69,17 @@ __2. Shell:__
 
 * The ```shell``` module takes the command name followed by a list of space-delimited arguments
 * either a free form command or ```cmd``` parameter is required.
+* Its almost like [ansible.builin.command](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/command_module.html#ansible-collections-ansible-builtin-command-module)  module but runs thr command through a shell (/bin/sh) on remote node.
+
+
+> __Parameters__
+
+| Parameters | Use |
+|--------|-------|
+|   chdir (path)|  change into this directory before running the command|
+|   cmd (string)  | the command to run followed by optional argument  |
+|   creates (path)|A filename, when it already exists, this step will not run|
+|   C    | All   |
+|   C    | All   |
+|   C    | All   |
+|   D    | All |
