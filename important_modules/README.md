@@ -52,7 +52,10 @@ For Example:
     body_format: json
 
 ```
-* More info about (Status code 201) [https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201]
+* More info about (https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201)[Status code 201] 
+
+
+
 __2. Shell:__
 
 * The ```shell``` module takes the command name followed by a list of space-delimited arguments
