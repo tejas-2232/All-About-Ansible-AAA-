@@ -71,8 +71,11 @@ __2. Shell:__
 * either a free form command or ```cmd``` parameter is required.
 * Its almost like [ansible.builin.command](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/command_module.html#ansible-collections-ansible-builtin-command-module)  module but runs thr command through a shell (/bin/sh) on remote node.
 
+<hr>
 
 > __Parameters__
+
+<hr>
 
 | Parameters | Use |
 |--------|-------|
