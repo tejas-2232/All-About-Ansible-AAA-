@@ -1,7 +1,16 @@
 # IMP modules in Ansible
 
+> We will look into following mostly used modules.
+
 1. uri
 2. shell
+3. lineinfile module
+4. win_shell
+5. file
+6. win_file
+7. service
+8. template
+9. fetch
 
 __1. uri:__
 
