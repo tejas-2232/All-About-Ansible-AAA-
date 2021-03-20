@@ -18,7 +18,7 @@ __1. uri:__
 
 * For Windows targets, use the ansible.windows.win_uri module instead
 
-For Example:
+_For Example:_
 
 ```YAML
 
@@ -87,3 +87,13 @@ __2. Shell:__
 | stdin (string) |Set the stdin of the command directly to the specified value.|
 | warn (boolean) |Whether to enable task warnings.|
 | |     |
+
+
+
+_For Examples:_
+
+```YAML
+- name: Execute the command in remote shell; stdout goes to the specified file on the remote
+  ansible.builtin.shell: somescript.sh >> somelog.txt
+
+```
