@@ -83,6 +83,7 @@ __2. Shell:__
 |   cmd (string)  | the command to run followed by optional argument  |
 |   creates (path)|A filename, when it already exists, this step will not run|
 |executable (path) |change the shell module used to execute the command. This expects an absolute path to executable.|
-|   C    | All   |
-|   C    | All   |
-|   D    | All |
+| removes (path)| A filename,when it doesn't exists,this step will not run|
+| stdin (string) |Set the stdin of the command directly to the specified value.|
+| warn (boolean) |Whether to enable task warnings.|
+| |     |
