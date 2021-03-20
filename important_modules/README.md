@@ -82,7 +82,7 @@ __2. Shell:__
 |   chdir (path)|  change into this directory before running the command|
 |   cmd (string)  | the command to run followed by optional argument  |
 |   creates (path)|A filename, when it already exists, this step will not run|
-|   C    | All   |
+|executable (path) |change the shell module used to execute the command. This expects an absolute path to executable.|
 |   C    | All   |
 |   C    | All   |
 |   D    | All |
