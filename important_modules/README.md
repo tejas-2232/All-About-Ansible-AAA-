@@ -85,8 +85,8 @@ __2. Shell:__
 |executable (path) |change the shell module used to execute the command. This expects an absolute path to executable.|
 | removes (path)| A filename,when it doesn't exists,this step will not run|
 | stdin (string) |Set the stdin of the command directly to the specified value.|
-| warn (boolean) |Whether to enable task warnings.|
-| |     |
+| warn (boolean- no,yes) |Whether to enable task warnings.|
+| stdin_add_newline (boolean- no,yes) | whether to append a newline to stdin data.|
 
 
 
@@ -94,6 +94,25 @@ _For Examples:_
 
 ```YAML
 - name: Execute the command in remote shell; stdout goes to the specified file on the remote
-  ansible.builtin.shell: somescript.sh >> somelog.txt
+  shell: somescript.sh >> somelog.txt
+
+```
+
+```YAML
+- name: Change the working directory to somedir/  before exeuting the command
+  shell: somescript.sh >> log.txt     #output stored in log.txt file 
+  args:
+    chdir: somedir/                     #change the directory
+
+```
+
+```YAML
+-name: 
+
+
+
+```
+
+```YAML
 
 ```
