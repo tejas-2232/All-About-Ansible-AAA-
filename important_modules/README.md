@@ -108,7 +108,7 @@ _For Examples:_
 
 ```YAML
 
--name: this command will change the working directory to somedir/and will       only run when somedir/somelog.txt does not exists.
+-name: this command will change the working directory to somedir/and will only run when somedir/somelog.txt does not exists.
  shell: somescript.sh >> somelog.txt
  args:
    chdir: /somedir
@@ -118,5 +118,9 @@ _For Examples:_
 ```
 
 ```YAML
+- name: this command will change the working directory to somedir/
+  shell:
+    cmd: ls -l | grep log
+    chdir: somedir/
 
 ```
