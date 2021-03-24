@@ -124,3 +124,7 @@ _For Examples:_
     chdir: somedir/
 
 ```
+
+__3. lineinfile:__ 
+
+* Used to manage lines in text files 
