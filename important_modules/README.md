@@ -127,4 +127,9 @@ _For Examples:_
 
 __3. lineinfile:__ 
 
-* Used to manage lines in text files 
+* Used to manage lines in text files
+
+* Ansible lineinfile module can be used to insert a line, modify an existing line, remove an existing line or to replace a line.
+
+
+* create parameter means if the file is absent on remote then it will create new file with the given name.
