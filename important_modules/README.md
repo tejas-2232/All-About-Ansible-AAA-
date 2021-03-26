@@ -140,8 +140,14 @@ __3. lineinfile:__
 * The new line will be added to the EOF. If the line already exists, then it won’t be added.
 * We also need to set the ```create```  parameter, which says if the file is not present then create a new file. 
 * The default value for the  ```state is present```  But It is added anyway for clarity
-* 
 
+
+
+```YAML
+
+
+
+```
 <hr>
 
 * create parameter means if the file is absent on remote then it will create new file with the given name.
