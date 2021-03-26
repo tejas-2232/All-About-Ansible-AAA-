@@ -132,4 +132,16 @@ __3. lineinfile:__
 * Ansible lineinfile module can be used to insert a line, modify an existing line, remove an existing line or to replace a line.
 
 
+**Inserting a line:**
+
+*  First, we will see how to write a line to a file, if it is not present.
+* We can set the path of the file to be modified using the path/dest parameter(>Ansible 2.3). And we will set the line to be inserted using the line parameter
+* The following example will write the line *Inserting a line in a file*  to the file *remote_server.txt*.
+* The new line will be added to the EOF. If the line already exists, then it won’t be added.
+* We also need to set the ```create```  parameter, which says if the file is not present then create a new file. 
+* The default value for the  ```state is present```  But It is added anyway for clarity
+* 
+
+<hr>
+
 * create parameter means if the file is absent on remote then it will create new file with the given name.
