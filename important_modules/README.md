@@ -139,5 +139,21 @@ __3. lineinfile:__
 
 * we can set the path of the file to be modified by dest/path(Ansible verison > 2.3 ) parameter. Then  line will be inserted using the line parameter.
 
-* The next example will write a line "This line is written for test purpose" to the file "file_RemoteServer.txt".
+* The next example will write a line ```This line is written for test purpose"``` to the file ```"file_RemoteServer.txt"```.
 * The new line will be added to EOF. If the line already exists, then it will not be added.
+
+* We also have to set the ```create parameter``` which means if the file is absent then create a new file.
+* The default value is present but I added it for more clarity.
+
+```YAML
+
+- hosts: local
+  tasks:
+    - name: example of inserting a line in file
+      lineinfile: 
+        dest: /home/device1/file_RemoteServer.txt
+        line: This line is written for test purpose
+        state: present
+        create: yes
+
+```
