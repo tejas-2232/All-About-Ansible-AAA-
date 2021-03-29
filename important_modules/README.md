@@ -157,3 +157,7 @@ __3. lineinfile:__
         create: yes
 
 ```
+
+<hr>
+
+* create parameter means if the file is absent on remote then it will create new file with the given name.
