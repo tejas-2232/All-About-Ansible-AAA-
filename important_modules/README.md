@@ -157,7 +157,21 @@ __3. lineinfile:__
         create: yes
 
 ```
+Isssue 1: 
 
+* If you get the following error,
+
+> lineinfile unsupported parameter for module: path
+
+* It is probably due to the issue with path parameter. Till ansible 2.3 this parameter was ‘dest‘. 
+* So if your ansible version is less than 2.3, then change the parameter to ‘dest‘. It should solve the issue
+
+Issue 2: 
+
+* If the destination file does not exist, then Ansible would throw an error like below. 
+* You can either make sure the file exists in the remote file or you can set the ‘create‘ parameter to yes to solve this issue.
+
+>  Destination /home/device1/file_RemoteServer.txt does not exist
 <hr>
 
 * create parameter means if the file is absent on remote then it will create new file with the given name.
