@@ -191,5 +191,21 @@ Issue 2:
     line: 'inventory = home/device1/inventory.ini'
     insertafter: '\[defaults\]'
 
+```
+
+
+* If we want to insert a line before any pattern then we can use ```insertbefore``` parameter.
+* The following example will insert a line before the pattern '#library'  in ansible.cfg.
+
+```YAML
+
+- name: example of insertbefore uisng lineinfile module
+  lineinfile:
+    dest: /etc/ansible/ansible.cfg
+    line: 'inventory = /home/device1/inventiry.ini'
+    insertbefore: '#library'
+
+
 
 ```
+
