@@ -177,4 +177,19 @@ Issue 2:
 * create parameter means if the file is absent on remote then it will create new file with the given name.
 
 
-Issue3
+**Inserting a line after/before a pattern:**
+
+* At times we want to insert a line after any specific pattern. This the time when  ```insertafter``` and ```insertbefore``` comes into picture.
+*  In the below exaample a line is inserted after ```[defaults]``` in ansible.cfg file.
+*  ``'[' and ']'`` are escaped as they are special regex characters.
+
+```YAML
+- name: example of insertafter uisng lineinfile module
+  lineinfile: 
+    dest: /etc/ansible/ansible.cfg    # path of file
+    # line to be inserted
+    line: 'inventory = home/device1/inventory.ini'
+    insertafter: '\[defaults\]'
+
+
+```
