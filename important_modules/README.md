@@ -206,3 +206,16 @@ Issue 2:
 
 ```
 
+**Removing a line:**
+
+* We have to set the state parameter to ```absent```, to remove the lines specified. All the occurrences of that line will be removed.
+
+```YAML
+- hosts: loc
+  tasks:
+    - name: Ansible lineinfile remove line example
+      lineinfile:
+        dest: /home/device1/remote_server.txt
+        line: Removed lines.
+        state: absent
+```
