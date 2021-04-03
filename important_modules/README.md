@@ -179,9 +179,8 @@ Issue 2:
 
 **Inserting a line after/before a pattern:**
 
-* At times we want to insert a line after any specific pattern. This the time when  ```insertafter``` and ```insertbefore``` comes into picture.
-*  In the below exaample a line is inserted after ```[defaults]``` in ansible.cfg file.
-*  ``'[' and ']'`` are escaped as they are special regex characters.
+* At times we want to insert a line after any specific pattern. This is the time when  ```insertafter``` and ```insertbefore``` comes into picture.
+* In the below exaample a line is inserted after ```[defaults]``` in ansible.cfg file. ``'[' and ']'`` are escaped as they are special regex characters.
 
 ```YAML
 - name: example of insertafter uisng lineinfile module
@@ -193,19 +192,17 @@ Issue 2:
 
 ```
 
-
 * If we want to insert a line before any pattern then we can use ```insertbefore``` parameter.
 * The following example will insert a line before the pattern '#library'  in ansible.cfg.
 
+
 ```YAML
 
-- name: example of insertbefore uisng lineinfile module
+- name: example of insertbefore using lineinfile module
   lineinfile:
     dest: /etc/ansible/ansible.cfg
     line: 'inventory = /home/device1/inventiry.ini'
     insertbefore: '#library'
-
-
 
 ```
 
