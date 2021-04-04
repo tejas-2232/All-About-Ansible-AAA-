@@ -16,7 +16,3 @@
 ## Ansible playbooks
 
 * Playbooks are nothing but the files where ansible code is written. They use YAML format (Yet Another Markup Language)
-
-* Playbooks tell ansible what to execute.
-
-* They provide a way to deploy and configure remote servers on various environments. On higher level, these playbooks are used to handle multi-tier rollouts and load balancing tasks for servers.
