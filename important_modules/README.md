@@ -237,3 +237,16 @@ Issue 2:
         state: absent
 
 ```
+
+
+**Replacing OR modifying a line using RegExp:**
+
+* To perform this we need to use backrefs parameter along with regexp parameter. It should be used with state=present.
+* If the regexp do not match any line then the file is not changed.
+* If it matches multiple lines then the last matched line will be replaced.
+* Also, the grouped elements in regexp are populated and can be used for modification
+
+
+
+
+
