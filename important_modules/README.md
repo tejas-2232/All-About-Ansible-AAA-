@@ -219,3 +219,21 @@ Issue 2:
         line: Removed lines.
         state: absent
 ```
+
+**Removing a line using REGEXP:**
+
+* we can also specify a regexp to remove a line. We can remove all lines that start with 'hello'.
+* We give the regular expression using lineinfile regexp parameter.
+* The following example will remove all lines starting with azure.
+
+```YAML
+
+- hosts: loc
+  tasks:
+    - name: remove line using regexp
+      lineinfile:
+        dest: /home/device1/remote_server.txt
+        regexp: "^azure"
+        state: absent
+
+```
