@@ -246,7 +246,23 @@ Issue 2:
 * If it matches multiple lines then the last matched line will be replaced.
 * Also, the grouped elements in regexp are populated and can be used for modification
 
+<p>
 
+In the below example we are commenting a line. The full line is captured line by placing them inside the parenthesis to ‘\1’. The ‘#\1’ replaces the line with ‘#’ followed by what was captured.
 
+You can have multiple captures and call them by using ‘\1’, ‘\2’, ‘\3’ etc. If you need to learn more information on grouping, refer [regular expression info](http://www.regular-expressions.info/brackets.html)
+
+</p>
+
+> Commenting a line with Ansible lineinfile backrefs
+
+```YAML
+- name: Ansible lineinfile regexp replace example
+  lineinfile: 
+    dest: /etc/ansible/ansible.cfg
+    regexp: '(inventory = /home/fedora/inventory.ini.*)'
+    line: '#\1'
+    backrefs: yes
+```
 
 
