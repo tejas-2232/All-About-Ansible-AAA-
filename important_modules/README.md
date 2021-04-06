@@ -260,9 +260,24 @@ You can have multiple captures and call them by using ‘\1’, ‘\2’, ‘\3�
 - name: Ansible lineinfile regexp replace example
   lineinfile: 
     dest: /etc/ansible/ansible.cfg
-    regexp: '(inventory = /home/fedora/inventory.ini.*)'
+    regexp: '(inventory = /home/linux/inventory.ini.*)'
     line: '#\1'
     backrefs: yes
 ```
 
+> Uncommenting the line with lineinfile regexp
 
+```YAML
+- name: Ansible lineinfile backrefs example
+  lineinfile: 
+    dest: /etc/ansible/ansible.cfg
+    regexp: '#(inventory = /home/linux/inventory.ini.*)'
+    line: '\1'
+    bacckrefs: yes   
+```
+
+<p>
+  We can uncomment the same line with small modifications. Here I am placing the commented line with the ‘#’ outside the grouping. So now only the portion after ‘#’ is captured in \1. And after running the script, you can see the line is uncommented.
+  
+  </p>
+  
