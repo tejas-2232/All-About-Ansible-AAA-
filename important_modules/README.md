@@ -281,3 +281,10 @@ You can have multiple captures and call them by using ‘\1’, ‘\2’, ‘\3�
   
   </p>
   
+**Lineinfile Multiple lines:**
+
+* This section is for replacing multiple lineinfile tasks with a single task and using with_items.
+*  If your intention is to add multiple lines to a file, you should use the [blockinfile module](https://docs.ansible.com/ansible/2.9/modules/blockinfile_module.html)
+*  We can use with_items to loop throught list. We can specify dest, regexp, line, etc. for each task in the list.
+*  Basically it's used instead of writing multiple tasks.
+*  
