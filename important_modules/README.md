@@ -70,6 +70,8 @@ __2. Shell:__
 * either a free form command or ```cmd``` parameter is required.
 * Its almost like [ansible.builin.command](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/command_module.html#ansible-collections-ansible-builtin-command-module)  module but runs thr command through a shell (/bin/sh) on remote node.
 
+* For windows systems, Ansible provides a similar module named win_shell, which mostly works the same way with limitations of Windows operating systems.
+
 <hr>
 
 > __Parameters__
@@ -131,6 +133,8 @@ __3. lineinfile:__
 * Ansible lineinfile module can be used to insert a line, modify an existing line, remove an existing line or to replace a line.
 
 * create parameter means if the file is absent on remote then it will create new file with the given name.
+
+* For windows systems, Ansible provides a similar module named win_lineinfile, which mostly works the same way with limitations of Windows operating systems.
 
 **Inserting a line:** 
 
@@ -307,3 +311,8 @@ _Example:_
 ```
 
 
+__4. file:__ 
+
+* File module is mainly used to deal with files, directories, and symlinks.
+* This module is used to manage properties and set or remove attributes of files, directories, and symlinks.
+* For windows systems, Ansible provides a similar module named win_file, which mostly works the same way with limitations of Windows operating systems.
