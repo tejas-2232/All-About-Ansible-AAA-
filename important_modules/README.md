@@ -5,12 +5,11 @@
 1. uri
 2. shell
 3. lineinfile module
-4. win_shell
-5. file
-6. win_file
-7. service
-8. template
-9. fetch
+4. file
+5. service
+6. template
+7. fetch
+
 
 __1. uri:__
 
