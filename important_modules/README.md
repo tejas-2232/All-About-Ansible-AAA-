@@ -316,3 +316,42 @@ __4. file:__
 * File module is mainly used to deal with files, directories, and symlinks.
 * This module is used to manage properties and set or remove attributes of files, directories, and symlinks.
 * For windows systems, Ansible provides a similar module named win_file, which mostly works the same way with limitations of Windows operating systems.
+
+**How the File module works?**
+
+* Ansible file module takes the parameters and options mentioned by you in playbooks. Then these are sent to target remote nodes where the tasks are parsed into command set and executed accordingly.
+
+* In this module’s parameter, we must consider that all the execution will be done on remote target nodes, so when changing ownership of files, directories; relevant user and group must exist on remote target nodes, else notebook  execution will fail.
+
+* So in such kind of cases, its always better to check user or group’s existence first on remote target nodes, then try to set ownership to those users or groups
+
+__Some Important parameters of file module:__
+
+* access_time: This parameter is used to set the file’s access Default is “preserve” means no modification needed for files, directories, soft links, and hard links. Also for new files where state is touch, then default is “now”.
+
+* access_time_format: This is parameter is used when we are also using access_time This parameter is used to set the time format of access time of files. Default format is based on the default python-format on your remote machine. But mostly it is “%Y%m%d%H%M.%S”.
+ 
+* attributes: To set the attributes of resulting directory or The acceptable flags are same as chattr. Which can be seen by using lsattr.
+
+* follow: This is to set whether filesystems links should be followed or not. Default is yes. Acceptable values are yes and no.
+
+* force: This is to force the creation of syslinks. Acceptable values are yes and no. default is yes.
+
+* group: – This is used to set the group ownership of a file or diretory.
+
+* mode: – To set the permission of target file or directory. Better practice is use 4 octal numbers inside single quotes to represent the permission like ‘0777’ or ‘0644’.
+
+* modification_time: – To set the file’s modification time. Default is “preserve” means no modification needed for files, directories, soft links, and hard links. Also for new files where state is touch, then default is “now”.
+
+* modification_time_format: – This is parameter is used when we are also using modification_time This parameter is used to set the format of modification time of files. Default format is based on the default python format on your remote machine. But mostly it is “%Y%m%d%H%M.%S”.
+
+* owner: – To Set the owner of file or directory.
+
+* path: – The file’s path, which is our task’s target.
+
+* recurse: – This is used when state parameter have directory as value and we want to update the content of a directory in terms of file attributes.
+    selevel, serole, setype, seuser: – These are used to update the selinux file context.
+    
+* src: – This is to give the path of the file to link to.
+
+* state: – Acceptable values are touch, absent, directory, file, hard and link. Default value is file.
