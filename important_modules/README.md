@@ -355,3 +355,37 @@ __Some Important parameters of file module:__
 * src: – This is to give the path of the file to link to.
 
 * state: – Acceptable values are touch, absent, directory, file, hard and link. Default value is file.
+
+__Examples:__
+
+```YAML
+- name: change file ownership,, group, permission
+  file:
+    path: /etc/file.conf
+    owner: sam
+    group: isi
+    mode: '0644'
+    
+```
+
+```YAML
+- name: give insecure permission to ana existing file
+  file:
+    path: /work
+    owner: root
+    group: root
+    momde: '1777'
+```
+
+```YAML
+- name: create a symbolic link
+
+```
+
+```YAML
+
+```
+
+```YAML
+
+```
