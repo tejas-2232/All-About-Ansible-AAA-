@@ -379,11 +379,25 @@ __Examples:__
 
 ```YAML
 - name: create a symbolic link
+  file:
+    src: /file/to/be/linked
+    dest: path/t/symlink
+    owner: foo
+    group: foo
+    state: link
 
 ```
 
 ```YAML
 
+- name: create two hard links
+  file:
+    src: '/tmp/{{ item.src }}'
+    dest: '{{ item.dest }}'
+    state: hard
+  loop:
+    - {src: x, dest: y }
+    - {src: z, dest: k }
 ```
 
 ```YAML
