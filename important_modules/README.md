@@ -401,5 +401,21 @@ __Examples:__
 ```
 
 ```YAML
+- name: touch a file, using symbolic link modes to set the permissions (equivalent to 0644)
+  file:
+    path: /etc/file.conf
+    state: touch
+    mode: u=rw,g=r,o=r
+
+
+```
+
+
+```YAML
+
+```
+
+
+```YAML
 
 ```
