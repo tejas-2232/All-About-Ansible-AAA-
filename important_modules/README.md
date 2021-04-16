@@ -407,11 +407,14 @@ __Examples:__
     state: touch
     mode: u=rw,g=r,o=r
 
-
 ```
 
-
 ```YAML
+- name: Touch the same file, but add/remove some permissions
+  file:
+    path: /etc/foo.conf
+    state: touch
+    mode: u+rw,g-wx,o-rwx
 
 ```
 
