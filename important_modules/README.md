@@ -415,6 +415,20 @@ __Examples:__
     path: /etc/foo.conf
     state: touch
     mode: u+rw,g-wx,o-rwx
+```
+
+```YAML
+- name: touch again the same file, but don't change times this makes task idempotent
+  file:
+    path: /etc/file.conf
+    state: touch
+    mode: u+rw,g-wx,o-rwx
+    modification_time: preserve
+    access_time: preserve
+    
+```
+
+```YAML
 
 ```
 
