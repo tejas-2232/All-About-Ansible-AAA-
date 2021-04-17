@@ -429,7 +429,12 @@ __Examples:__
 ```
 
 ```YAML
-
+- name: create a directory if it does not exists
+  file:
+    path: /etc/some_directory
+    state: directory
+    mode: 0755
+    
 ```
 
 
