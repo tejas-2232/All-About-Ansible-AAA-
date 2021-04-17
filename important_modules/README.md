@@ -439,5 +439,15 @@ __Examples:__
 
 
 ```YAML
+- name: update modification and access time of given file
+  file:
+    path: /ect/some_file
+    state: file
+    modification_time: now
+    access_time:now
+```
+
+
+```YAML
 
 ```
