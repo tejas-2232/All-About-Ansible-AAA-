@@ -455,17 +455,19 @@ __Examples:__
     state: directory
     recurse: yes
     owner: foo
-    group: foo
-    
-    
+    group: foo    
 ```
 
-
 ```YAML
-
+- name: remove a file
+  file:
+    path: /etc/file.txt
+    state: absent
 ```
 
-
 ```YAML
-
+- name: recursively remove directory
+  file:
+    path: /etc/foo
+    state: absent
 ```
