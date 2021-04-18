@@ -449,5 +449,23 @@ __Examples:__
 
 
 ```YAML
+- name: recursively change ownership of drirectory
+  file:
+    path: /etc/httpd
+    state: directory
+    recurse: yes
+    owner: foo
+    group: foo
+    
+    
+```
+
+
+```YAML
+
+```
+
+
+```YAML
 
 ```
