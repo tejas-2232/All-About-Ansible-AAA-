@@ -477,3 +477,32 @@ __5. Service:__
 * Ansible’s service module controls services on remote hosts and is useful for these common tasks:- Start, stop or restart a service on a remote host.
 
 * For windows systems, Ansible provides a similar module named win_service, which mostly works the same way with limitations of Windows operating systems.
+
+Examples:
+
+```YAML
+- name: Start service httpd, if not started
+  service:
+    name: httpd
+    state: started
+
+```
+```YAML
+- name: Stop service httpd, if started
+  service:
+    name: httpd
+    state: stopped
+
+```
+
+
+```YAML
+
+
+```
+
+
+```YAML
+
+
+```
