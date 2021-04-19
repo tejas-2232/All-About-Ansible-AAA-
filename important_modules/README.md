@@ -471,3 +471,9 @@ __Examples:__
     path: /etc/foo
     state: absent
 ```
+
+__5. Service:__
+
+* Ansible’s service module controls services on remote hosts and is useful for these common tasks:- Start, stop or restart a service on a remote host.
+
+* For windows systems, Ansible provides a similar module named win_service, which mostly works the same way with limitations of Windows operating systems.
