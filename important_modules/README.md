@@ -483,6 +483,7 @@ Examples:
 ```YAML
 - name: Start service httpd, if not started
   service:
+    #put name of your service below
     name: httpd
     state: started
 
@@ -495,14 +496,16 @@ Examples:
 
 ```
 
-
 ```YAML
-
+- name: restart the httpd service, in all cases
+  service:  
+    name: httpd
+    state: restarted
 
 ```
 
-
 ```YAML
+
 
 
 ```
