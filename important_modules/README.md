@@ -311,7 +311,7 @@ _Example:_
 ```
 
 
-__4. file:__ 
+__4. File:__ 
 
 * File module is mainly used to deal with files, directories, and symlinks.
 * This module is used to manage properties and set or remove attributes of files, directories, and symlinks.
@@ -537,3 +537,5 @@ Examples:
 ```
 
       
+__6. Template:__
+
