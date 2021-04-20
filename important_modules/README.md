@@ -501,11 +501,39 @@ Examples:
   service:  
     name: httpd
     state: restarted
-
 ```
 
 ```YAML
-
-
-
+- name: reload httpd service, in all cases
+  service: 
+    name: httpd
+    state:reloaded
 ```
+
+
+```YAML
+# this is used to start any service which resides in complex folder systems
+# In below example service named foo is started
+- name: start service foo, based on running process /usr/bin/foo
+  service:   
+    name: foo
+    pattern: /usr/bin/foo
+    state: started
+```
+
+```YAML
+- name: enable service httpd and not touch the state
+  service:
+    name: httpd
+    enabled: yes
+```
+
+```YAML
+- name: restart network service for interface eth0
+  service:
+    name: network
+    state: restarted
+    args: eth0
+```
+
+      
