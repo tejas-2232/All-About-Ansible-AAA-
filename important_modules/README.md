@@ -535,7 +535,10 @@ Examples:
     state: restarted
     args: eth0
 ```
-
       
 __6. Template:__
+
+* Ansible is maainly used for managiing configurations of multiple servers and environments. Service wise or we can say cluster wise these config files may vary depending on the use case. BUt apart from some parameters all other setting remains same.
+* It is not feasible to create static files for each of these configurations. It's going to take time and we can say it is trivial.
+* So if there is any way to manage these files then `Template` is the answer
 
