@@ -590,5 +590,5 @@ __Examples:__
 
 __Note for fetch module:__
 
-* When running fetch with `become`, the <font color='blue'> slurp </font> module will also be used to fetch the contents of the file for determining the remote checksum. This effectively doubles the transfer size, and depending on the file size can consume all available memory on the remote or local hosts causing a `MemoryError`. Due to this it is advisable to run this module without become whenever possible.
+* When running fetch with `become`, the <font color='blue'> `slurp` </font> module will also be used to fetch the contents of the file for determining the remote checksum. This effectively doubles the transfer size, and depending on the file size can consume all available memory on the remote or local hosts causing a `MemoryError`. Due to this it is advisable to run this module without become whenever possible.
 
