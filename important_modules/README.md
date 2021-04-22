@@ -536,16 +536,24 @@ Examples:
     args: eth0
 ```
       
-__6. Template:__
+__6. Fetch:__
 
-* Ansible is mainly used for managing configurations of multiple servers and environments. Service-wise or we can say cluster-wise these config files may vary depending on the use case.But apart from some parameters all other setting remains same.
+* Fetch module works like copy module, but in reverse.
 
-* It is not feasible to create static files for each of these configurations.It's going to take time and we can say it is trivial.
+* Fetch module is used for fetching files from remote machines and storing them locally in a file tree, organised by hostname.
 
-* So if there is any way to manage these files then `Template` is the answer.
+* File that are already present at destination will be overwritten if they are different than the src.
 
-* A template in Ansible is a file which contains all your configuration parameters, but the dynamic values are given as variables. 
+* This module also supports windows targets.
 
-* During the playbook execution, depending on the conditions like which cluster you are using, the variables will be replaced with the relevant values.
+__Examples:__
 
-* 
+```YAML
+
+```
+
+
+__Note for fetch module:__
+
+* When running fetch with `become`, the <font color='blue'> slurp </font> module will also be used to fetch the contents of the file for determining the remote checksum. This effectively doubles the transfer size, and depending on the file size can consume all available memory on the remote or local hosts causing a `MemoryError`. Due to this it is advisable to run this module without become whenever possible.
+
