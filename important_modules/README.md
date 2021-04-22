@@ -549,9 +549,34 @@ __6. Fetch:__
 __Examples:__
 
 ```YAML
-
+- name: store fie into /tmp/fetched/host.exaample.com/tmp/somefile
+  fetch: 
+    src: /tmp/somefile
+    dest: /tmp/fetched
 ```
 
+```YAML
+- name: specifying a path directly
+  fetch:  
+    src: /tmp/somefile
+    dest: /tmp/prefix-{{ inventory_hostname}}
+    flat: yes
+```
+
+```YAML
+- name: specifying destination path
+  fetch:
+    src: /tmp/uniquefile
+    dest: /tmp/special/
+    flat: yes
+```
+  
+
+
+```YAML
+
+```
+<hr>
 
 __Note for fetch module:__
 
