@@ -546,6 +546,16 @@ __6. Fetch:__
 
 * This module also supports windows targets.
 
+###### Parameters:
+
+|Parameter |Choice/defaults | Comments |
+|----------|----------------|----------|
+|dest| | A directory to save the file into. For Example, if the dest directory is _/backup_ a src file named _/etc/profile_ on host _host.example.com_, would be saved into `_/backup/host.example.com/etc/profile_`. The host name is based on the inventory name.|
+|flat<br> _boolean_|__Choice__ <br> 1. yes <br> 2. No|When set to `yes`, the task will fail if the remote file cannot be read for any reason.<br> Prior to ansible 2.5,setting this would only fail if the source file was missing. <br> The default was changed to `yes` in Ansible 2.5|
+|src | | The file on  the remote system to fetch <br> This must be a file,not a directory. <br> Recursive fetching may be supported in a later release|
+| Validate_checksum <br> _boolean_| __Choice__ <br> 1. yes<br>2. No| Verify that the source and destination checksums match adter the files are fetched|
+
+
 __Examples:__
 
 ```YAML
