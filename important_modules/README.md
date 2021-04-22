@@ -7,8 +7,8 @@
 3. lineinfile module
 4. file
 5. service
-6. template
-7. fetch
+6. fetch
+
 
 
 __1. uri:__
@@ -538,12 +538,14 @@ Examples:
       
 __6. Template:__
 
-* Ansible is maainly used for managiing configurations of multiple servers and environments. Service wise or we can say cluster wise these config files may vary depending on the use case. BUt apart from some parameters all other setting remains same.
+* Ansible is mainly used for managing configurations of multiple servers and environments. Service-wise or we can say cluster-wise these config files may vary depending on the use case.But apart from some parameters all other setting remains same.
 
-* It is not feasible to create static files for each of these configurations. It's going to take time and we can say it is trivial.
+* It is not feasible to create static files for each of these configurations.It's going to take time and we can say it is trivial.
 
-* So if there is any way to manage these files then `Template` is the answer
+* So if there is any way to manage these files then `Template` is the answer.
 
 * A template in Ansible is a file which contains all your configuration parameters, but the dynamic values are given as variables. 
 
 * During the playbook execution, depending on the conditions like which cluster you are using, the variables will be replaced with the relevant values.
+
+* 
