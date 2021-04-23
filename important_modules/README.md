@@ -581,10 +581,12 @@ __Examples:__
     flat: yes
 ```
   
-
-
 ```YAML
-
+- name: storing in a path relative to playbook
+  fetch:
+    src: /tmp/uniquefile
+    dest: special/prefix-{{ inventory_hostname }}
+    flat:yes
 ```
 <hr>
 
