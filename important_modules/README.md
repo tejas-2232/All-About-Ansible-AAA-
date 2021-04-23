@@ -1,6 +1,6 @@
 # IMP modules in Ansible
 
-> ### We will look into following mostly used modules.
+> ### We will look into following popular modules.
 
 1. uri
 2. shell
@@ -8,6 +8,16 @@
 4. file
 5. service
 6. fetch
+7. get_url
+8. wget
+9. command
+10. block
+11. copy
+12. set_fact
+13. script
+14. reboot
+15. wait_for
+16. delegate_to
 
 
 
