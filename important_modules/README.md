@@ -604,3 +604,11 @@ __Note for fetch module:__
 
 * When running fetch with `become`, the <font color='blue'> `slurp` </font> module will also be used to fetch the contents of the file for determining the remote checksum. This effectively doubles the transfer size, and depending on the file size can consume all available memory on the remote or local hosts causing a `MemoryError`. Due to this it is advisable to run this module without become whenever possible.
 
+__7. get_url:__
+
+* get_url is used to downloads files from HTTP, HTTPS, or FTP to the remote server.
+* The remote server must have direct access to the remote resource
+* By default, if an environment variable `<protocol>_proxy` is set on the target host, requests will be sent through that proxy. This behaviour can be overridden by setting a variable for this task or by using the use_proxy option.
+
+* HTTP redirects can redirect from HTTP to HTTPS so you should be sure that your proxy environment for both protocols is correct.
+
