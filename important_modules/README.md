@@ -618,7 +618,7 @@ __7. get_url:__
 
 __Examples:__
 
-foce basic auth,headers
+
 
 ```YAML
 
@@ -648,5 +648,22 @@ foce basic auth,headers
 ```
 
 ```YAML
+- name: download file with check(SHA256)
+  get_url:
+    url: http://example.com/path/file.conf
+    dest: /etc/foo.conf
+    checksum: sha256:52fd3b1d61e25b23cb1e796a0b9d813f9cdf812012f4850b878a8dc4e4944cd7
+```
+
+```YAML
+- name: download file with check(md5)
+  get_url:
+    url: http://example.com/path/file.conf
+    dest: /etc/foo.conf
+    checksum: md5:66dffb5228a211e61d6d7ef4a86f5758
+
+```
+```YAML
+
 
 ```
