@@ -612,3 +612,41 @@ __7. get_url:__
 
 * HTTP redirects can redirect from HTTP to HTTPS so you should be sure that your proxy environment for both protocols is correct.
 
+* From Ansible 2.4 when run with `--check`, it will do a HEAD request to validate the URL but will not download the entire file or verify it against hashes.
+
+* For Windows targets, use the [win_get_url](https://docs.ansible.com/ansible/2.9/modules/win_get_url_module.html#win-get-url-module) module instead.
+
+__Examples:__
+
+foce basic auth,headers
+
+```YAML
+
+- name: download foo.conf file
+  get_url:
+    url: http://example.com/path/file.conf
+    dest: /etc/foo.conf
+    mode: '0440'
+```
+
+```YAML
+- name: download file and force basic auth
+  get_url:
+    url: http://example.com/path/file.conf
+    dest: /etc/foo.conf
+    force_basic_auth: yes
+```
+
+```YAML
+- name: download file with custom HTTP headers
+  get_url:
+    url: http://example.com/path/file.conf
+    dest: /etc/foo.conf
+    headers:
+      key1: one
+      key2: two
+```
+
+```YAML
+
+```
