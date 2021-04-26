@@ -664,6 +664,18 @@ __Examples:__
 
 ```
 ```YAML
-
-
+- name: Download file from a file path
+  get_url:
+    url: file:///tmp/afile.txt
+    dest: /tmp/afilecopy.txt
 ```
+```YAML
+- name: < Fetch file that requires authentication.
+        username/password only available since 2.8, in older versions you need to use url_username/url_password
+  get_url:
+    url: http://example.com/path/file.conf
+    dest: /etc/foo.conf
+    username: daniel
+    password: '{{ mysecret }}'
+```
+
