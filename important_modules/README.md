@@ -9,15 +9,14 @@
 5. service
 6. fetch
 7. get_url
-8. wget
-9. command
-10. block
-11. copy
-12. set_fact
-13. script
-14. reboot
-15. wait_for
-16. delegate_to
+8. command
+9. block
+10. copy
+11. set_fact
+12. script
+13. reboot
+14. wait_for
+15. delegate_to
 
 
 
@@ -678,4 +677,10 @@ __Examples:__
     username: daniel
     password: '{{ mysecret }}'
 ```
+
+__8. command:__
+
+* It is used to execute commands on targets.
+* The `command` module takes the command name followed by a list of space-delimited arguments.
+
 
