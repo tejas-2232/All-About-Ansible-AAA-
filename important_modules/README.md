@@ -688,3 +688,18 @@ __8. command:__
 * Either a free form command or cmd parameter is required.
 * For Windows targets, use the [win_command](https://docs.ansible.com/ansible/2.9/modules/win_command_module.html#win-command-module) module instead.
 
+__Examples:__
+
+```YAML
+- name: Run command if /path/to/database does not exist (without 'args' keyword).
+  command: /usr/bin/make_database.sh db_user db_name creates=/path/to/database
+
+```
+
+```YAML
+# 'args' is a task keyword, passed at the same level as the module
+- name: Run command if /path/to/database does not exist (with 'args' keyword).
+  command: /usr/bin/make_database.sh db_user db_name
+  args:
+    creates: /path/to/database
+```
