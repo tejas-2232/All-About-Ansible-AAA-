@@ -683,7 +683,7 @@ __8. command:__
 * It is used to execute commands on targets.
 * The `command` module takes the command name followed by a list of space-delimited arguments.
 * The given command will be executed on all selected nodes.
-* The command(s) will not be processed through the shell, so variables like `$HOME` and operations like `"<"`,`">"`,`"|"`,`";"` and `"&"` will not work. You can use [shell](https://docs.ansible.com/ansible/2.9/modules/shell_module.html#shell-module) module if you need these features. 
+* __The command(s) will not be processed through the shell__, so variables like `$HOME` and operations like `"<"`,`">"`,`"|"`,`";"` and `"&"` will not work. You can use [shell](https://docs.ansible.com/ansible/2.9/modules/shell_module.html#shell-module) module if you need these features. 
 * To create `command` tasks that are easier to read than the ones using space-delimited arguments, pass parameters using the `args` task keyword or use `cmd` parameter.
 * Either a free form command or cmd parameter is required.
 * For Windows targets, use the [win_command](https://docs.ansible.com/ansible/2.9/modules/win_command_module.html#win-command-module) module instead.
@@ -703,3 +703,21 @@ __Examples:__
   args:
     creates: /path/to/database
 ```
+```YAML
+# cmd is module parameter
+- name: Run command if path to databse does not exists (with 'cmd' parameter)
+  command:
+    cmd: /usr/bin/make_database.sh db_user db_name
+    creates: /path/to/database
+```
+
+```YAML
+- name: change the directory to somedir/ and run the command as db_owner of path/to/database does not exists.
+  command: /usr/bin/make_database.sh db_user db_name
+  become: yes
+  become_user: db_owne
+  args:
+    chdir: somedir/
+    creates: path/to/database
+```
+
