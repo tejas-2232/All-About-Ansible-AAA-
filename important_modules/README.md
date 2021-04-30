@@ -729,6 +729,10 @@ __9. Block:__
 
 __Grouping tasks with blocks:__
 
+* All tasks in a block inherit directives applied at the block level. 
+* Most of what you can apply to a single task (with the exception of loops) can be applied at the block level, so blocks make it much easier to set data or directives common to the tasks. The directive does not affect the block itself, it is only inherited by the tasks enclosed by a block. 
+* For example, a when statement is applied to the tasks within a block, not to the block itself.
+
 
 __Handling errors with blocks:__
 
