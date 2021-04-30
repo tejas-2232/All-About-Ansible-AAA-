@@ -721,3 +721,15 @@ __Examples:__
     creates: path/to/database
 ```
 
+__9. Block:__
+
+* Blocks create logical groups of tasks. Blocks also offer ways to handle task errors, similar to exception handling in many programming languages.
+  * Grouping tasks with blocks
+  * Handling errors with blocks
+
+__Grouping tasks with blocks:__
+
+
+__Handling errors with blocks:__
+
+
