@@ -733,6 +733,22 @@ __Grouping tasks with blocks:__
 * Most of what you can apply to a single task (with the exception of loops) can be applied at the block level, so blocks make it much easier to set data or directives common to the tasks. The directive does not affect the block itself, it is only inherited by the tasks enclosed by a block. 
 * For example, a when statement is applied to the tasks within a block, not to the block itself.
 
+*Block example with named tasks inside the block:*
+
+```YAML
+
+tasks;
+  - name: Install,configure and start apache
+    block:
+      - name: install httpd and memcached
+        yum:
+        - httpd
+        - memcached
+        state: present
+          
+
+```
+
 
 __Handling errors with blocks:__
 
