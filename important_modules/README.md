@@ -745,6 +745,11 @@ tasks;
         - httpd
         - memcached
         state: present
+        
+      - name: Apply the foo config template
+         ansible.builtin.template:
+           src: templates/src.j2
+           dest: /etc/foo.conf  
           
 
 ```
