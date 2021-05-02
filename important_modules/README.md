@@ -1,4 +1,7 @@
-# IMP modules in Ansible
+<center>  </center>
+<p style="text-align: center;"> IMP modules in Ansible </p>
+
+![](https://opensource.com/sites/default/files/styles/image-full-size/public/lead-images/browser_blue_text_editor_web.png?itok=lcf-m6N7)
 
 > ### We will look into following popular modules.
 
