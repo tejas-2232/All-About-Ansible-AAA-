@@ -1,7 +1,7 @@
 
-![](https://opensource.com/sites/default/files/styles/image-full-size/public/lead-images/browser_blue_text_editor_web.png?itok=lcf-m6N7)
+# Important modules in Ansible
 
-<center> <h1> Important modules in Ansible </h1> </center>
+![](https://miro.medium.com/max/5120/1*9z4jjgJZl_DyHaOEzP-wSw.jpeg)
 
 > ### We will look into following popular modules.
 
