@@ -761,6 +761,10 @@ tasks;
     ignore_errors: yes
 ```
 
+* In the above example, when condition is executed before Ansible runs each of the above three tasks.
+* All three tasks also inherit the privilages escalation directives, running as the root user. 
+*  `ignore_errors: yes` ensures that Ansible continues to execute the playbook even if some of the taska fail.
+
 
 __Handling errors with blocks:__
 
