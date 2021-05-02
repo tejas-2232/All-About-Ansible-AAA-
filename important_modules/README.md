@@ -747,11 +747,18 @@ tasks;
         state: present
         
       - name: Apply the foo config template
-         ansible.builtin.template:
-           src: templates/src.j2
-           dest: /etc/foo.conf  
-          
-
+        template:
+          src: templates/src.j2
+          dest: /etc/foo.conf  
+      - name: start service bar and enable it    
+        service:
+          name: bar
+          state: started
+          enabled: true
+    when: ansible_facts['distribution'] == 'CentOS'
+    become: true
+    become_user: root
+    ignore_errors: yes
 ```
 
 
