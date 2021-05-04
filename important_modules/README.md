@@ -772,5 +772,8 @@ tasks;
 __Handling errors with blocks:__
 
 * You can control how Ansible responds to task errors using blocks with `rescue` and `always` sections.
-* Rescue blocks specify tasks to run when an earlier task in a block fails. This approach is similar to exception handling in many programming languages
+* Rescue blocks specify tasks to run when an earlier task in a block fails. This approach is similar to exception handling in many programming languages.
+* Ansible runs rescue block only after a task return __failed__ state.
+* __Bad task definitions__ and __unreachable hosts__ will _not trigger_ the rescue block.
+
 
