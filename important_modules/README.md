@@ -780,6 +780,25 @@ __Handling errors with blocks:__
 __Examples:__
 
 ```YAML
-handle the error
+tasks:
+  - name: handle the error
+    block:
+      - name: print a message
+        debug:
+          msg: 'I Execute normally'
+      
+      - name: force a failure
+        command: /bin/false
+
+      - name: never print this
+        debug:
+          msg: ' I never execute, due to above task failing, :-( '
+    
+    rescue: 
+      - name: print when errors
+        debug:
+          msg: " I caught an error, can do stuff here to fix it :-) '
+
+
 ```
 
