@@ -825,3 +825,7 @@ __Example:__
       debug:
         msg: "This Always executes"
 ```
+<br>
+<hr>
+Together these elements offer complex error handling__
+<hr>
