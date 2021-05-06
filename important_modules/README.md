@@ -802,3 +802,26 @@ tasks:
 
 ```
 
+We can also add an `always` section to a block. Tasks in the `always` section run no matter what the task status of the previous block is.
+
+__Example:__
+```YAML
+
+- name: always do X
+  block:
+    - name: print a message
+      debug:
+        msg: 'I execute normally'
+
+    - name: force a failure
+      command: /bin/false
+
+    - name: never print this
+      debug:
+        msg: 'I never execute'
+
+  always:
+    - name: always do this task
+      debug:
+        msg: "This Always executes"
+```
