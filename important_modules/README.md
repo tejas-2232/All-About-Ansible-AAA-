@@ -829,3 +829,38 @@ __Example:__
 <hr>
 Together these elements offer complex error handling__
 <hr>
+
+
+__Example__
+
+```YAML
+- name: Attempt and graceful roll back demo
+  block:
+    - name: Print a message
+      ansible.builtin.debug:
+        msg: 'I execute normally'
+
+    - name: Force a failure
+      ansible.builtin.command: /bin/false
+
+    - name: Never print this
+      ansible.builtin.debug:
+        msg: 'I never execute, due to the above task failing, :-('
+  rescue:
+    - name: Print when errors
+      ansible.builtin.debug:
+        msg: 'I caught an error'
+
+    - name: Force a failure in middle of recovery! >:-)
+      ansible.builtin.command: /bin/false
+
+    - name: Never print this
+      ansible.builtin.debug:
+        msg: 'I also never execute :-('
+  always:
+    - name: Always do this
+      ansible.builtin.debug:
+        msg: "This always executes"
+
+
+```
