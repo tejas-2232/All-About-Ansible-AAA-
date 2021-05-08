@@ -862,5 +862,11 @@ __Example__
       ansible.builtin.debug:
         msg: "This always executes"
 
-
 ```
+
+* The tasks in `block` section execute normally. If any task in the block return `failed`, the `rescue` section exectes to recover from the error. 
+* The `always` section runs regardless of the results of the `block` and `rescue` sections.
+
+* If an error occures in block and rescue task succeeds, Ansible reverts the failed status of the original task for the run & continous to run as if the original task had succeeded.
+
+* The rescued task is considered successful, and does not trigger max_fail_percentage or any_errors_fatal configurations. However, Ansible still reports a failure in the playbook statistics.
