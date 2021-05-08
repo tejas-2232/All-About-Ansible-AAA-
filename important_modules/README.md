@@ -870,3 +870,30 @@ __Example__
 * If an error occures in block and rescue task succeeds, Ansible reverts the failed status of the original task for the run & continous to run as if the original task had succeeded.
 
 * The rescued task is considered successful, and does not trigger max_fail_percentage or any_errors_fatal configurations. However, Ansible still reports a failure in the playbook statistics.
+
+* We can use blocks with `flush_handlers` in a rescue task to ensure that all handlers run even if an error occurs:
+
+__Example:__
+
+```YAML
+tasks:
+  - name: Attempt and graceful roll back demo
+    block:
+      - name: print a message
+        debug:
+          msg: " I execute normally"
+        changed_when: yes
+        notify: run me even after an error
+      
+      - nama: force a failure
+        command: /bin/false
+
+    rescue: 
+      - name: make sure all handlers run
+        meta: flush_handlers
+
+handlers:
+  - name: run me even after an error
+    debug:
+      msg: "This handler runs even on error"
+```
