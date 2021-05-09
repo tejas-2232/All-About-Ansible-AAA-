@@ -897,3 +897,10 @@ handlers:
     debug:
       msg: "This handler runs even on error"
 ```
+
+__10. copy:__
+
+* Copy module is used to copy files from local or remote machine to a specific location on remote machine.
+* We can also use _fetch_ module to copy files from remote machine to local machine.
+* _template_ module is used if you want variable interpolation.
+* For windows systems, Ansible provides a similar module named [win_copy](https://docs.ansible.com/ansible/2.4/win_copy_module.html#win-copy), which mostly works the same way with limitations of Windows operating systems.
