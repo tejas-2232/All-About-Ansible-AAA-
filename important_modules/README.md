@@ -904,3 +904,17 @@ __10. copy:__
 * We can also use _fetch_ module to copy files from remote machine to local machine.
 * _template_ module is used if you want variable interpolation.
 * For windows systems, Ansible provides a similar module named [win_copy](https://docs.ansible.com/ansible/2.4/win_copy_module.html#win-copy), which mostly works the same way with limitations of Windows operating systems.
+
+
+__Examples:__
+
+```YAML
+- name: copy files
+  copy:
+    src: /etc/ansible/file.config
+    dest: /home/machine2/project
+    owner: foo
+    group: foo
+    mode: 0644
+
+```
