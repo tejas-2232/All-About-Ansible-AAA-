@@ -916,5 +916,17 @@ __Examples:__
     owner: foo
     group: foo
     mode: 0644
+```
+
+```YAML
+- name: copy file with owner and permission,using symbolic representation.
+  copy:
+    src: /srv/myfiles/foo.conf]
+    dest: /etc/ foo.conf
+    owner: foo
+    group: foo
+    mode: u=rw,g=r,o=r
+  
 
 ```
+
