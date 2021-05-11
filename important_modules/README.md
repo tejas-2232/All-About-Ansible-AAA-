@@ -930,3 +930,24 @@ __Examples:__
 
 ```
 
+```YAML
+
+- name: Copy a new "ntp.conf file to remote server,backing up the original if it differs from the copied version
+  copy:
+    src: /mine/ntp.conf
+    dest: /etc/ntp.conf
+    owner: foo
+    group: foo
+    mode: `0644`
+    backup: yes
+
+```
+
+```YAML
+- name: Copy a new "sudoers" file into place, after passing validation with visudo
+  copy:
+    src: /mine/sudoers
+    dest: /etc/sudoers.edit
+    validate: /usr/sbin/visudo -csf %s
+
+```
