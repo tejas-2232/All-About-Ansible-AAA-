@@ -951,3 +951,24 @@ __Examples:__
     validate: /usr/sbin/visudo -csf %s
 
 ```
+
+
+```YAML
+- name: copy a "sudoers" file on the remote machine for editing
+  copy:
+    src: /etc/sudoers
+    dest: /etc/sudoers.edit
+    remote_src: yes
+    validate: /usr/sbin/visudo -csf %s
+
+```
+
+```YAML
+
+- name: Copy using inline content
+  copy:
+    content: '# This file was moved to /etc/other.conf'
+    dest: /etc/mine.conf
+
+
+```
