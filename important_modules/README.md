@@ -969,6 +969,14 @@ __Examples:__
   copy:
     content: '# This file was moved to /etc/other.conf'
     dest: /etc/mine.conf
-
-
 ```
+
+```YAML
+- name: if follow= yes,path/to/file will be overwritten by contents of foo.conf
+  copy:
+    src: /etc/foo.conf
+    dest: /path/to/link # link to path/to/file
+    follow: yes
+    
+```
+      
