@@ -979,4 +979,13 @@ __Examples:__
     follow: yes
     
 ```
-      
+
+
+```YAML
+
+- name: If follow=no, /path/to/link will become a file and be overwritten by contents of foo.conf
+  copy:
+    src: /etc/foo.conf
+    dest: /path/to/link  # link to /path/to/file
+    follow: no
+```
