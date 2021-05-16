@@ -1037,5 +1037,20 @@ __Examples:__
 
     This module is also supported for Windows targets.
 
-
 ```
+
+__12. script:__
+
+* The script module takes the script name followed by a list of space-delimited arguments.
+
+* Either a free form command or cmd parameter is required, see the examples.
+
+* The local script at path will be transferred to the remote node and then executed.
+
+* The given script will be processed through the shell environment on the remote node.
+  
+* This module does not require python on the remote system, much like the raw module.
+
+* This module is also supported for Windows targets.
+
+
