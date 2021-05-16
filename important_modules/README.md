@@ -989,3 +989,13 @@ __Examples:__
     dest: /path/to/link  # link to /path/to/file
     follow: no
 ```
+
+__11. set_fact:__
+
+* we can set new variables using this module.
+* Variables are set on host-by-host basis just like facts discovered by the setup module.
+* These variables will be available to subsequent plays during an ansible playbook run.
+
+* We have option to set  `cacheable` to `yes` to save variables across executions using a fact cache.
+
+
