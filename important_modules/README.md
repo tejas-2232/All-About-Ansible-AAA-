@@ -1020,9 +1020,16 @@ __Examples:__
     other_fact: "{{ local_var * 2 }}"
     another_fact: " {{ some_registered_var.results | map(attribute= 'ansible_facts.some_fact') | list }} " 
 
-
 ```
 
 ```YAML
+# As of Ansible 1.8, Ansible will convert boolean strings ('true', 'false', 'yes', 'no')
+# to proper boolean values when using the key=value syntax, however it is still
+# recommended that booleans be set using the complex argument style:
+
+- set_fact: 
+    one_fact: yes
+    other_fact: no
+
 
 ```
