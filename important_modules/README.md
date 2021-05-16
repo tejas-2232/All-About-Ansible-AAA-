@@ -1002,6 +1002,10 @@ __11. set_fact:__
  
 * Variables created with set_fact have different precedence depending on whether they are or are not cached.
 
+* This module is also supported for Windows targets.
+
+
+
 
 __Examples:__
 
@@ -1030,6 +1034,8 @@ __Examples:__
 - set_fact: 
     one_fact: yes
     other_fact: no
+
+    This module is also supported for Windows targets.
 
 
 ```
