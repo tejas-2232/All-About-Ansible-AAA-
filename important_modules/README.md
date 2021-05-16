@@ -993,9 +993,36 @@ __Examples:__
 __11. set_fact:__
 
 * we can set new variables using this module.
+
 * Variables are set on host-by-host basis just like facts discovered by the setup module.
+
 * These variables will be available to subsequent plays during an ansible playbook run.
 
 * We have option to set  `cacheable` to `yes` to save variables across executions using a fact cache.
+ 
+* Variables created with set_fact have different precedence depending on whether they are or are not cached.
 
 
+__Examples:__
+
+```YAML
+# Example setting host facts using key=value pairs, note that this always creates strings or booleans
+
+- set_fact: one_fact= "something" other_fact="{{ local_var }}"
+
+```
+
+```YAML
+# Example setting host facts using complex arguments
+ 
+- set_fact:
+    one_fact: something
+    other_fact: "{{ local_var * 2 }}"
+    another_fact: " {{ some_registered_var.results | map(attribute= 'ansible_facts.some_fact') | list }} " 
+
+
+```
+
+```YAML
+
+```
