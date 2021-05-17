@@ -1054,3 +1054,26 @@ __12. script:__
 * This module is also supported for Windows targets.
 
 
+__Examples:__
+
+```YAML
+- name: Run a script with arguments (free form)
+  script: /some/local/script.sh --some-argument 1234
+  
+```
+
+```YAML
+- name: Run a script with arguments (using 'cmd' parameter)
+  script:
+    cmd: /some/local/script.sh --some-argument 1234
+
+```
+
+```YAML
+- name: Run a script only if file.txt does not exist on the remote node
+  script: /some/local/create_file.sh --some-argument 1234
+  args:
+    creates: /the/created/file.txt
+
+```
+
