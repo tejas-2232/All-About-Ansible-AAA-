@@ -1057,23 +1057,43 @@ __12. script:__
 __Examples:__
 
 ```YAML
-- name: Run a script with arguments (free form)
-  script: /some/local/script.sh --some-argument 1234
-  
+- name: run a script ith arguments (free form)
+  script: /etc/cnf/script.sh  --some-argument 1234
 ```
 
 ```YAML
-- name: Run a script with arguments (using 'cmd' parameter)
+- name: run a acript with arguments (using 'cmd' param)
   script:
-    cmd: /some/local/script.sh --some-argument 1234
-
+    cmd: /etc/cnf/script.sh  --some-argument 1234
 ```
 
 ```YAML
-- name: Run a script only if file.txt does not exist on the remote node
-  script: /some/local/create_file.sh --some-argument 1234
+- name: run a script only if file.txt  does not exist on the remote node
+  script: /etc/cnf/script.sh  --some-argument 1234
   args:
-    creates: /the/created/file.txt
-
+    creates: /created/file.txt
 ```
+```YAML
+- name: run a script only if file.txt exists on the remote node
+  script: /etc/cnf/script.sh  --some-argument 1234
+  args:
+    removes: /removed/file.txt
+```
+
+
+```YAML
+- name: run a script using an executable in non-system path
+  script: /local/script
+  args:
+    executable: /path/to/an/executable
+```
+
+
+```YAML
+- name: run a script using an executable in system path
+  script: /local/script.py
+  args:
+    executable: python3
+```
+
 
