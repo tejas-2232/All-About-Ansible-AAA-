@@ -1096,4 +1096,20 @@ __Examples:__
     executable: python3
 ```
 
+__13. reboot:__
 
+* Reboot a machine, wait for it to shut down, come back up, and respond to commands.
+* For windows target,use win_reboot module.
+
+__Examples:__
+
+```YAML
+- name: unconditionally reboot the machine with all defaults
+  reboot:
+
+```
+
+```YAML
+- name: reboot a slow machine that might have lots of updates to apply
+  reboot:
+    reboot_timeout:3600
