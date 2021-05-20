@@ -1101,6 +1101,21 @@ __13. reboot:__
 * Reboot a machine, wait for it to shut down, come back up, and respond to commands.
 * For windows target,use win_reboot module.
 
+
+<hr>
+
+> __Parameters__
+
+<hr>
+
+| Parameters |Choices/Defaults | Use |
+|--------|-------|-------|
+| __connect_timeout__ <br> integer || maximum seconds to waitfor a successful connection to the managed hosts before trying again.|
+| __msg__ <br> string | __Default:__ <br> "Reboot initiated by Ansible | message to display to user before reboot|
+| __post_reboot_delay__ <br> integer | __Default:__ <br> 0| Seconds to wait afte reboot command is successful before attempting to valiadte the system rebooted successfullt. <br> This is useful if you want for something to settle despite your connection already working.|
+
+
+
 __Examples:__
 
 ```YAML
