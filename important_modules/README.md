@@ -1113,8 +1113,9 @@ __13. reboot:__
 | __connect_timeout__ <br> integer || maximum seconds to waitfor a successful connection to the managed hosts before trying again.|
 | __msg__ <br> string | __Default:__ <br> "Reboot initiated by Ansible | message to display to user before reboot|
 | __post_reboot_delay__ <br> integer | __Default:__ <br> 0| Seconds to wait afte reboot command is successful before attempting to valiadte the system rebooted successfullt. <br> This is useful if you want for something to settle despite your connection already working.|
-|pre_reboot_delay | Default <br> 0 |Seconds to wait before reboot. Passed as a parameter to the reboot command. |
-
+|__pre_reboot_delay__ | __Default__ <br> 0 |Seconds to wait before reboot. Passed as a parameter to the reboot command. |
+|__reboot_command__ <br> string |__Default:__<br>"[determined based on target OS]"|Command to run that reboots the system, including any parameters passed to the command. |
+| __reboot_timeout__ <br> integer | __Default__ <br> 600 | Maximum seconds to wait for machine to reboot and respond to a test command|
 
 __Examples:__
 
