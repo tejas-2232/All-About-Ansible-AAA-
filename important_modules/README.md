@@ -1116,8 +1116,7 @@ __13. reboot:__
 |__pre_reboot_delay__ | __Default__ <br> 0 |Seconds to wait before reboot. Passed as a parameter to the reboot command. |
 |__reboot_command__ <br> string |__Default:__<br>"[determined based on target OS]"|Command to run that reboots the system, including any parameters passed to the command. |
 | __reboot_timeout__ <br> integer | __Default__ <br> 600 | Maximum seconds to wait for machine to reboot and respond to a test command <br>This timeout is evaluated separately for both reboot verification and test command success so the maximum execution time for the module is twice this amount.|
-|__search_paths__ <br> list/elements=true|__Default__|Paths to search on the remote machine for the __shutdown__ command.
-_Only_ these paths will be searched for the shutdown command. PATH is ignored in the remote node when searching for the shutdown command|
+|__search_paths__ <br> list/elements=true|__Default__|Paths to search on the remote machine for the __shutdown__ command. <br>_Only_ these paths will be searched for the shutdown command. PATH is ignored in the remote node when searching for the shutdown command|
 |__test_command__<br> string|__Default:__ <br>"whoami"|Command to run on the rebooted host and expect success from to determine the machine is ready for further tasks.|
 
 
