@@ -1132,3 +1132,21 @@ __Examples:__
 - name: reboot a slow machine that might have lots of updates to apply
   reboot:
     reboot_timeout:3600
+```
+
+__14 wait_for:__
+
+* Wait_for is used to wait for a condition before executing
+
+* _timeout_ is used to wait for a certain amount time and it's deafult if nothing is set.
+
+* Waiting for a port to become available is useful when services are not immediately available after their init scripts return which is true of certain Java application servers.
+
+* It is also useful when starting guests with the virt module and needing to pause until they are ready.
+
+* This module is also used to wait for a regex to match a string to be present in a file.
+
+* For Windows targets, use the [win_wait_for](https://docs.ansible.com/ansible/2.9/modules/win_wait_for_module.html#win-wait-for-module) module instead.
+
+
+
