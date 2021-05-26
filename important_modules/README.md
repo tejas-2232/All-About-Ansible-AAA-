@@ -1140,7 +1140,7 @@ __14 wait_for:__
 
 * _timeout_ is used to wait for a certain amount time and it's deafult if nothing is set.
 
-* Waiting for a port to become available is useful when services are not immediately available after their init scripts return which is true of certain Java application servers.
+* Waiting for a port to become available is useful when services are not immediately available after their init scripts return which is true for certain Java application servers.
 
 * It is also useful when starting guests with the virt module and needing to pause until they are ready.
 
@@ -1148,5 +1148,24 @@ __14 wait_for:__
 
 * For Windows targets, use the [win_wait_for](https://docs.ansible.com/ansible/2.9/modules/win_wait_for_module.html#win-wait-for-module) module instead.
 
+__Example:__
+
+
+```YAML
+- name: sleep for 300 seconds anad continue with play
+  wait_for:
+    timeout: 300
+  delegate_to: localhost
+```
+
+
+```YAML
+
+```
+
+
+```YAML
+
+```
 
 
