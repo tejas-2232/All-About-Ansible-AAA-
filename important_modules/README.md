@@ -1156,13 +1156,35 @@ __Example:__
   wait_for:
     timeout: 300
   delegate_to: localhost
-```
+``
 
 
 ```YAML
-
+- name: wait for port 8000 to become open on the host , don't start checking for 10 seconds
+  wait_for:
+    port: 8000
+    delay: 10
 ```
 
+```YAML
+- name: wait for port 8000 of any IP to close active connections, don't start checking for 10 seconds
+  wait_for:
+    host: 0.0.0.
+    port: 8000
+    delay: 10
+    state: drained
+```
+
+```YAML
+- name: wait for port 8000 of any IP to close active connections,ignoring connections for specified hosts
+  wait_for:
+    host: 0.0.0.0
+    port: 8000
+    state: drained
+    exclude_hosts: 10.45.90.12, 13.56.78.99
+    
+
+```
 
 ```YAML
 
