@@ -1054,4 +1054,141 @@ __12. script:__
 * This module is also supported for Windows targets.
 
 
+__Examples:__
+
+```YAML
+- name: run a script ith arguments (free form)
+  script: /etc/cnf/script.sh  --some-argument 1234
+```
+
+```YAML
+- name: run a acript with arguments (using 'cmd' param)
+  script:
+    cmd: /etc/cnf/script.sh  --some-argument 1234
+```
+
+```YAML
+- name: run a script only if file.txt  does not exist on the remote node
+  script: /etc/cnf/script.sh  --some-argument 1234
+  args:
+    creates: /created/file.txt
+```
+```YAML
+- name: run a script only if file.txt exists on the remote node
+  script: /etc/cnf/script.sh  --some-argument 1234
+  args:
+    removes: /removed/file.txt
+```
+
+
+```YAML
+- name: run a script using an executable in non-system path
+  script: /local/script
+  args:
+    executable: /path/to/an/executable
+```
+
+
+```YAML
+- name: run a script using an executable in system path
+  script: /local/script.py
+  args:
+    executable: python3
+```
+
+__13. reboot:__
+
+* Reboot a machine, wait for it to shut down, come back up, and respond to commands.
+* For windows target,use win_reboot module.
+
+
+<hr>
+
+> __Parameters__
+
+<hr>
+
+| Parameters |Choices/Defaults | Use |
+|--------|-------|-------|
+| __connect_timeout__ <br> integer || maximum seconds to waitfor a successful connection to the managed hosts before trying again.|
+| __msg__ <br> string | __Default:__ <br> "Reboot initiated by Ansible | message to display to user before reboot|
+| __post_reboot_delay__ <br> integer | __Default:__ <br> 0| Seconds to wait afte reboot command is successful before attempting to valiadte the system rebooted successfullt. <br> This is useful if you want for something to settle despite your connection already working.|
+|__pre_reboot_delay__ | __Default__ <br> 0 |Seconds to wait before reboot. Passed as a parameter to the reboot command. |
+|__reboot_command__ <br> string |__Default:__<br>"[determined based on target OS]"|Command to run that reboots the system, including any parameters passed to the command. |
+| __reboot_timeout__ <br> integer | __Default__ <br> 600 | Maximum seconds to wait for machine to reboot and respond to a test command <br>This timeout is evaluated separately for both reboot verification and test command success so the maximum execution time for the module is twice this amount.|
+|__search_paths__ <br> list/elements=true|__Default__|Paths to search on the remote machine for the __shutdown__ command. <br>_Only_ these paths will be searched for the shutdown command. PATH is ignored in the remote node when searching for the shutdown command|
+|__test_command__<br> string|__Default:__ <br>"whoami"|Command to run on the rebooted host and expect success from to determine the machine is ready for further tasks.|
+
+
+__Examples:__
+
+```YAML
+- name: unconditionally reboot the machine with all defaults
+  reboot:
+
+```
+
+```YAML
+- name: reboot a slow machine that might have lots of updates to apply
+  reboot:
+    reboot_timeout:3600
+```
+
+__14 wait_for:__
+
+* Wait_for is used to wait for a condition before executing
+
+* _timeout_ is used to wait for a certain amount time and it's deafult if nothing is set.
+
+* Waiting for a port to become available is useful when services are not immediately available after their init scripts return which is true for certain Java application servers.
+
+* It is also useful when starting guests with the virt module and needing to pause until they are ready.
+
+* This module is also used to wait for a regex to match a string to be present in a file.
+
+* For Windows targets, use the [win_wait_for](https://docs.ansible.com/ansible/2.9/modules/win_wait_for_module.html#win-wait-for-module) module instead.
+
+__Example:__
+
+
+```YAML
+- name: sleep for 300 seconds anad continue with play
+  wait_for:
+    timeout: 300
+  delegate_to: localhost
+``
+
+
+```YAML
+- name: wait for port 8000 to become open on the host , don't start checking for 10 seconds
+  wait_for:
+    port: 8000
+    delay: 10
+```
+
+```YAML
+- name: wait for port 8000 of any IP to close active connections, don't start checking for 10 seconds
+  wait_for:
+    host: 0.0.0.
+    port: 8000
+    delay: 10
+    state: drained
+```
+
+```YAML
+- name: wait for port 8000 of any IP to close active connections,ignoring connections for specified hosts
+  wait_for:
+    host: 0.0.0.0
+    port: 8000
+    state: drained
+    exclude_hosts: 10.45.90.12, 13.56.78.99
+    
+
+```
+
+```YAML
+
+```
+
+
 
