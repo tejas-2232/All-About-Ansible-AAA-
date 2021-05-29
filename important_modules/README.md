@@ -1156,8 +1156,8 @@ __Example:__
   wait_for:
     timeout: 300
   delegate_to: localhost
-``
 
+```
 
 ```YAML
 - name: wait for port 8000 to become open on the host , don't start checking for 10 seconds
@@ -1182,8 +1182,19 @@ __Example:__
     port: 8000
     state: drained
     exclude_hosts: 10.45.90.12, 13.56.78.99
-    
+```
 
+```YAML
+- name:  wait until the file /etc/file.cfg is present beforee continuing
+  wait_for:
+    path: /etc/file.cfg
+```
+
+```YAML
+- name: wait until the string "completed" is in the file /etc/file.cfg before continuning
+  wait_for:
+    path: /etc'file.cfg
+    search_regex: completed
 ```
 
 ```YAML
