@@ -1198,8 +1198,38 @@ __Example:__
 ```
 
 ```YAML
-
+- name: Wait until regex pattern matches in the file /tmp/foo and print the matched group
+  wait_for:
+    path: /etc/file.cfg
+    search_regexp: completed (?P<task>\w+)
+  register: waitfor
+-debug:
+  msg: completed {{ waitfor['groupdict']['task'] }}
 ```
 
+```YAML
+- name: Wait until the lock file is removed
+  wait_for:
+    path: /var/lock/file.lock
+    state: absent
+```
 
+```YAML
+- name: Wait until the process is finished and pid was destroyed
+  wait_for:
+    path: /proc/3466/status
+    state: absent
+```
+
+```YAML
+- name: Output customized message when failed
+  wait_for:
+    path: /etc/file.cfg
+    state: present
+    msg: Timeout to find file /etc/file.cfg
+```
+
+```YAML
+
+```
 
