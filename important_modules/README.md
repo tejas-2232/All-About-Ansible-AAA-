@@ -1229,7 +1229,16 @@ __Example:__
     msg: Timeout to find file /etc/file.cfg
 ```
 
+__15. delegatae_to:__
+
+* If we want to run any task on any particular machine, we can use ansible delegate_to module
+
+
 ```YAML
-
+- name: install httpd
+  yum:
+    name: httpd
+    state: latest
+  delegate_to: web.etm1
 ```
-
+* Above task will run on web.etmll machine
