@@ -1232,6 +1232,8 @@ __Example:__
 __15. delegatae_to:__
 
 * If we want to run any task on any particular machine, we can use ansible delegate_to module
+* The process of hadling over the execution of task to other machine is known as __delegation.__
+* 
 
 
 ```YAML
