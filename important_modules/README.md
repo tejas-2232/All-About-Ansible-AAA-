@@ -1246,3 +1246,8 @@ __15. delegatae_to:__
   delegate_to: web.etm1
 ```
 * Above task will run on web.etmll machine
+
+
+__16. yum:__
+
+* Installs, upgrade, downgrades, removes, and lists packages and groups with the yum package manager.
