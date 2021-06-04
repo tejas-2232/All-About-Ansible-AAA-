@@ -20,6 +20,8 @@
 13. reboot
 14. wait_for
 15. delegate_to
+16. yum
+17. dnf
 
 
 
