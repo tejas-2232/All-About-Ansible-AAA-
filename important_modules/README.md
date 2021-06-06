@@ -1251,3 +1251,24 @@ __15. delegatae_to:__
 __16. yum:__
 
 * Installs, upgrade, downgrades, removes, and lists packages and groups with the yum package manager.
+* This module works on python 2 only.
+* If you need python 3 support then use dnf module.
+
+__Eameples:__
+
+```YAML
+- name: install the latest version of Apache
+  yum:
+    name: httpd
+    state: latest
+```
+
+```YAML
+- name: ensure a list of packages is installed
+  yum:
+    name: "{{ packages }} "
+  vars:
+    packages:
+    - httpd
+    - httpd-tools
+```
