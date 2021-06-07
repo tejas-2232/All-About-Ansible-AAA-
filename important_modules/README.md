@@ -1254,7 +1254,7 @@ __16. yum:__
 * This module works on python 2 only.
 * If you need python 3 support then use dnf module.
 
-__Eameples:__
+__Examples:__
 
 ```YAML
 - name: install the latest version of Apache
@@ -1271,4 +1271,20 @@ __Eameples:__
     packages:
     - httpd
     - httpd-tools
+```
+
+```YAML
+- name: Remove apache package
+  yum:
+    name: httpd
+    state: absent
+```
+
+```YAML
+- name: install the latest version of Apache from the testing repo
+  yum:
+    name: https
+    enablerepo: testing
+    state: present
+
 ```
