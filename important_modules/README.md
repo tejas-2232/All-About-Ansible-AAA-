@@ -1303,20 +1303,44 @@ __Examples:__
 ```
 
 ```YAML
-
+- name: upgrade all packages, excluding kernel and foo related packages
+  yum:
+    name: '*'
+    state: latest
+    exclude: kernel*, foo*
 ```
 
-
 ```YAML
-
+- name: install nginx rmp from a remote repo
+  yum: 
+    name: http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm
+    state: latest
 ```
 
-
 ```YAML
-
+- name: install nginx rpm froma local file
+  yum:
+    name: /usr/local/src/nginx-release-centos-6-0.el6.ngx.noarch.rpm
+    state: present
 ```
 
+```YAML
+- name: install ' Development tools' packae from group
+  yum:
+    name: @Development Tools
+    state: present
+```
 
 ```YAML
+- name: install the 'Gnome desktop' environment group
+  yum:
+    name: "@^gnome-desktop-environment"
+    state: present
+```
 
+```YAML
+- name: list ansible packages and register with result to print with debig later
+  yum:
+    list: asnible
+  register: result
 ```
