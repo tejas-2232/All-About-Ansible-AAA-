@@ -1286,5 +1286,37 @@ __Examples:__
     name: https
     enablerepo: testing
     state: present
+```
+
+```YAML
+- name: install one specific version of apache
+  yum:
+    name: httpd-2.2.29-1.4.amzn1
+    state: absnet
+```
+
+```YAML
+- name: upgrade all packages
+  yum:
+    name: '*'
+    state: latest
+```
+
+```YAML
+
+```
+
+
+```YAML
+
+```
+
+
+```YAML
+
+```
+
+
+```YAML
 
 ```
