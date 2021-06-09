@@ -1344,3 +1344,36 @@ __Examples:__
     list: asnible
   register: result
 ```
+
+```YAML
+- name: Install package with multiple repos enabled
+  yum:
+    name: sos
+    enablerepo: "epel, o17_latest"
+```
+
+```YAML
+- name: Install package with multiple repos disabled
+  yum:
+    name: sos
+    disablerepo: "epel,ol7_latest"
+```
+
+```YAML
+- name: install list a package
+  yum:  
+    name:
+    - nginx`
+    - postgresql
+    - postgresql-server
+  state: present  
+```
+
+```YAML
+- name: Download the nginx package but do not install it
+  yum:
+    name: 
+      - nginx
+    state: latest
+    download_only: true
+```
