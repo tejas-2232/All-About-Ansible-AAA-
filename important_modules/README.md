@@ -1377,3 +1377,23 @@ __Examples:__
     state: latest
     download_only: true
 ```
+
+__17. dnf__
+
+* Installs, upgrade, removes, and lists packages and groups with the dnf package manager.
+
+__Examples__
+
+```YAML
+
+- name: Install the latest version of Apache
+  dnf:
+    name: httpd
+    state: latest
+```
+```YAML
+- name: Install Apache >= 2.4
+  dnf:
+    name: httpd>=2.4
+    state: present
+```
