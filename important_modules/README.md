@@ -1413,3 +1413,31 @@ __Examples__
     enablerepo: testing
     state: present
 ```
+
+```YAML
+- name: upgrade all packages
+  dnf:
+    name: "*"
+    state: latest
+```
+
+```YAML
+- name: install the nginx rpm from a remote repo
+  dnf:
+    name: 'http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm'
+    state: present
+```
+
+```YAML
+- name: install nginx rpm from a local file
+  dnf:
+    name: /usr/local/src/nginx-release-centos-6-0.el6.ngx.noarch.rpm
+    state: present
+```
+
+```YAML
+- name: install the 'Development tools' package group
+  dnf:
+    name: '@Development tools'
+    state: present
+```
