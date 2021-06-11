@@ -1381,6 +1381,7 @@ __Examples:__
 __17. dnf__
 
 * Installs, upgrade, removes, and lists packages and groups with the dnf package manager.
+* This module works with the support of python3
 
 __Examples__
 
@@ -1395,5 +1396,20 @@ __Examples__
 - name: Install Apache >= 2.4
   dnf:
     name: httpd>=2.4
+    state: present
+```
+
+```YAML
+- name: remove apache package
+  dnf:
+    name: httpd
+    state: absent
+```
+
+```YAML
+- name: install latest version of apache from a testing repo
+  dnf:
+    name: httpd
+    enablerepo: testing
     state: present
 ```
