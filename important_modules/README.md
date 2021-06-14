@@ -1441,3 +1441,37 @@ __Examples__
     name: '@Development tools'
     state: present
 ```
+```YAML
+- name: Autoremove unneeded packages installed as dependencies
+  dnf:
+    autoremove: yes
+```
+
+```YAML
+- name: Uninstall httpd but keep its dependencies
+  dnf:
+    name: httpd
+    state: absent
+    autoremove: no
+```
+
+```YAML
+- name: Install a modularity appstream with defined stream and profile
+  dnf:
+    name: '@postgresql:9.6/client'
+    state: present
+```
+
+```YAML
+- name: Install a modularity appstream with defined stream
+  dnf:
+    name: '@postgresql:9.6'
+    state: present
+```
+
+```YAML
+- name: Install a modularity appstream with defined profile
+  dnf:
+    name: '@postgresql/client'
+    state: present
+```
