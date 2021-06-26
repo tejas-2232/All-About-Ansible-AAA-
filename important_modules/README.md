@@ -1486,3 +1486,12 @@ __18. mail__
 * If you cannot automate a specific step, but the step is non-blocking, sending out an email to the responsible party to make them perform their part of the bargain is an elegant way to put the responsibility in someone else’s lap.
 
 * Of course sending out a mail can be equally useful as a way to notify one or more people in a team that a specific action has been (successfully) taken.
+
+__Examples:__
+
+```YAML
+- name: Example of sending mail to root
+  mail: 
+    subject: System {{ ansible_hostname }} has been successfully provisioned
+  delegate_to: localhost
+```
