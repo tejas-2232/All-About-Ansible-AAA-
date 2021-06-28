@@ -1495,3 +1495,14 @@ __Examples:__
     subject: System {{ ansible_hostname }} has been successfully provisioned
   delegate_to: localhost
 ```
+
+```YAML
+- name: Sending an e-mail using the remote machine, not the Ansible controller node
+  community.general.mail:
+    host: localhost
+    port: 25
+    to: John Smith <john.smith@example.com>
+    subject: Ansible-report
+    body: System {{ ansible_hostname }} has been successfully provisioned.
+
+```
