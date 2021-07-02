@@ -23,6 +23,7 @@
 16. yum
 17. dnf
 18. mail
+19.blockinfile
 
 
 
@@ -1506,3 +1507,8 @@ __Examples:__
     body: System {{ ansible_hostname }} has been successfully provisioned.
 
 ```
+
+
+__19. blockinfile:__
+
+* 
