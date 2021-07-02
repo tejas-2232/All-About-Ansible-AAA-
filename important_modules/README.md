@@ -1511,4 +1511,5 @@ __Examples:__
 
 __19. blockinfile:__
 
+* This module is used to insert/update/remove a text block surrounded by marker lines.
 * 
