@@ -1512,4 +1512,28 @@ __Examples:__
 __19. blockinfile:__
 
 * This module is used to insert/update/remove a text block surrounded by marker lines.
-* 
+
+__EXAMPLE:__
+
+
+```YAML
+- name: Insert/Update "Match User" configuration block in /etc/ssh/sshd_config
+  blockinfile:
+    path: /etc/ssh/sshd_config
+    block: | 
+      Match User ansible-agent
+      PasswordAuthentication no
+```
+```YAML
+
+- name: Insert/Update eth0 configuration stanza in /etc/network/interfaces (it might be better to copy files into /etc/network/interfaces.d/)
+  blockinfile:
+    path: /etc/network/interfaces
+    block: |
+      iface eth0 inet static
+          address 192.0.2.23
+          netmask 255.255.255.0
+```
+```YAML
+
+```
