@@ -1534,6 +1534,16 @@ __EXAMPLE:__
           address 192.0.2.23
           netmask 255.255.255.0
 ```
+
+```YAML
+- name: Insert/Update configuration using a local file and validate it
+  blockinfile:
+    block: "{{ lookup('file', './local/sshd_config') }}"
+    path: /etc/ssh/sshd_config
+    backup: yes
+    validate: /usr/sbin/sshd -T -f %s
+```
+
 ```YAML
 
 ```
