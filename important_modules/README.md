@@ -1545,5 +1545,22 @@ __EXAMPLE:__
 ```
 
 ```YAML
+- name: Insert/Update HTML surrounded by custom markers after <body> line
+  blockinfile:
+    path: /var/www/html/index.html
+    marker: "<!-- {mark} ANSIBLE MANAGED BLOCK -->"
+    insertafter: "<body>"
+    block: |
+      <h1>Welcome to {{ ansible_hostname }}</h1>
+      <p>Last updated on {{ ansible_date_time.iso8601 }}</p>
+
+```
+
+```YAML
+- name: Remove HTML as well as surrounding markers
+  blockinfile:
+    path: /var/www/html/index.html
+    marker: "<!-- {mark} ANSIBLE MANAGED BLOCK -->"
+    block: ""
 
 ```
