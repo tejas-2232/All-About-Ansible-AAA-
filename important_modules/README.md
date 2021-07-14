@@ -1564,3 +1564,18 @@ __EXAMPLE:__
     block: ""
 
 ```
+
+```YAML
+- name: add mapping to /etc/hosts
+  blockinfile:
+    path: /etc/hosts
+    block: |
+      {{ item.ip}} {{item.name}}
+    marker: "# {mark} Ansible Managed Block {{item.name}} "
+  loop:
+    - { name: host1, ip: 10.10.1.10 }
+    - { name: host2, ip: 10.10.1.11 }
+    - { name: host3, ip: 10.10.1.12 }
+    - { name: host4, ip: 10.10.1.13 }
+    
+```
