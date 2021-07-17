@@ -1585,10 +1585,27 @@ __20. raw__
 
  
 * Executes a low-down and dirty SSH command, not going through the module subsystem.
+
 * This is useful and should only be done in a few cases. A common case is installing python on a system without python installed by default. 
-* Another is speaking to any devices such as routers that do not have any Python installed. In any other case, using the shell or command module is much more appropriate.
+
+* Another is speaking to any devices such as routers that do not have any Python installed. In any other case, using the `shell` or `command` module is much more appropriate.
+
 * Arguments given to raw are run directly through the configured remote shell.
+
 * Standard output, error output and return code are returned when available.
+
 * This module does not require python on the remote system, much like the script module.
+
 * This module is also supported for Windows targets.
 
+```YAML
+- name: bootstrap a host without python2 installed.
+  raw: dnf install -y python2 python2-dnf libselinux-python
+```
+
+```YAML
+- name: Run a command that uses non-posix shell-isms (in this example /bin/sh doesn't handle redirection and wildcards together but bash does)
+  raw: cat < /tnp/*txt
+  args:   
+    executable: /bin/bash
+```
