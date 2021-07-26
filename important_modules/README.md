@@ -1629,3 +1629,25 @@ __21. service:__
 * Supported init systems include BSD init, OpenRC, SysV, Solaris SMF, systemd, upstart.
 * For Windows targets, use the [win_service](https://docs.ansible.com/ansible/2.9/modules/win_service_module.html#win-service-module) module instead.
 
+__Examples:__
+
+```YAML
+- name: start service if not started
+  service:
+    name: httpd
+    state: started
+```
+
+```YAML
+- name: Stop service httpd, if started
+  service:
+    name: httpd
+    state: stopped
+```
+
+```YAML
+- name:  Restart service httpd, in all cases
+  service:
+    name: httpd
+    state: restarted
+```
