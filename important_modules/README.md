@@ -25,6 +25,7 @@
 18. mail
 19. blockinfile
 20. raw
+21. service
 
 
 
@@ -1620,3 +1621,11 @@ __20. raw__
   raw: Get-WmiObject -Class Win32_UserAccount
 
 ```
+
+__21. service:__
+
+* service module is used to manage services
+* control services on remote hosts. 
+* Supported init systems include BSD init, OpenRC, SysV, Solaris SMF, systemd, upstart.
+* For Windows targets, use the [win_service](https://docs.ansible.com/ansible/2.9/modules/win_service_module.html#win-service-module) module instead.
+
