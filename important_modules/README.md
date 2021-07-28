@@ -1651,3 +1651,30 @@ __Examples:__
     name: httpd
     state: restarted
 ```
+```YAML
+- name: reload service httpd in all cases
+  service:
+    name: httpd
+    state: reloaded
+```
+```YAML
+- name: Enable service httpd, and not touch the state
+  service:
+    name: httpd
+    enables: yes
+```
+
+```YAML
+- name: start a service foo, bases on running process /usr/bin/foo
+  service:
+    name: foo
+    pattern: /usr/bin/foo
+    state: started
+```
+```YAML
+- name: restart network service for interfacae eth0
+  service:
+    name: network
+    state: restarted
+    args: eth0
+```
