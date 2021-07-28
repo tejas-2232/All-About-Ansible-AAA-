@@ -26,8 +26,7 @@
 19. blockinfile
 20. raw
 21. service
-
-
+22. systemd
 
 __1. uri:__
 
@@ -1678,3 +1677,13 @@ __Examples:__
     state: restarted
     args: eth0
 ```
+
+__22. systemd__
+
+* systemd module is used to control systemd services on remote hosts.
+* It requires A system managed by systemd
+
+
+|parameter|choices| comments|
+|----|----|----|
+|daemon_reexec| choices<br> * yes <br> * no | Run daemon_reexec command before doing any other operations, the systemd manager will serialize the manager state.|
