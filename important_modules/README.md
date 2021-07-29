@@ -1683,7 +1683,42 @@ __22. systemd__
 * systemd module is used to control systemd services on remote hosts.
 * It requires A system managed by systemd
 
+<hr>
+
+> Parameters
+
+<hr>
 
 |parameter|choices| comments|
 |----|----|----|
 |daemon_reexec| choices<br> * yes <br> * no | Run daemon_reexec command before doing any other operations, the systemd manager will serialize the manager state.|
+
+
+__Examples:__
+
+```YAML
+- name: make sure a service is running
+  systemd:
+    name: httpd
+    state: started
+```
+
+```YAML
+- name: stop service cron on debian if running
+  systemd:
+    name: cron
+    stata: stopped
+```
+
+```YAML
+- name: run a service cron on cent os, in all cases, also issue deamon-reload to pick upconfig changes
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    name: cron
+    
+```
+
+```YAML
+
+```
