@@ -1720,5 +1720,16 @@ __Examples:__
 ```
 
 ```YAML
-
+- name: reload service httpd in all cases
+  systemd:
+    name: httpd
+    state: reloaded
 ```
+```YAML
+- name: enable service httpd and ensure it is not masked
+  systemd:
+    name: httpd
+    enabled: yes
+    masked: no
+```
+
