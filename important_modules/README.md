@@ -1732,4 +1732,13 @@ __Examples:__
     enabled: yes
     masked: no
 ```
+```YAML
+- name: Run a user service when XDG_RUNTIME_DIR is not set on remote login
+  ansible.builtin.systemd:
+    name: myservice
+    state: started
+    scope: user
+  environment:
+    XDG_RUNTIME_DIR: "/run/user/{{ myuid }}"
+```
 
