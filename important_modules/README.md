@@ -1733,6 +1733,22 @@ __Examples:__
     masked: no
 ```
 ```YAML
+- name: enable a timer for dnf-automatic
+  systemd:
+    name: dnf-automatic.timer
+    state: started
+    enabled: yes
+```
+
+```YAML
+ name: just force systemd to reread configs (2.4 and above)
+  systemd:
+    daemon_reload: yes
+```
+
+
+
+```YAML
 - name: Run a user service when XDG_RUNTIME_DIR is not set on remote login
   ansible.builtin.systemd:
     name: myservice
