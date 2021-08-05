@@ -1746,15 +1746,10 @@ __Examples:__
     daemon_reload: yes
 ```
 
-
-
 ```YAML
-- name: Run a user service when XDG_RUNTIME_DIR is not set on remote login
-  ansible.builtin.systemd:
-    name: myservice
-    state: started
-    scope: user
-  environment:
-    XDG_RUNTIME_DIR: "/run/user/{{ myuid }}"
-```
+- name: just force systemd to re-execute itself (2.8 and above)
+  systemd:
+    daemon_reexec: yes
 
+
+```
