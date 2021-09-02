@@ -7,7 +7,8 @@
 
 [1. uri](#uri)
 
-2. shell
+[2. shell](#shell)
+
 3. lineinfile module
 4. file
 5. service
@@ -29,7 +30,9 @@
 21. service
 22. systemd
 
-#### __1. uri:__
+<hr>
+
+1. #### uri:
 
 * Interacts with HTTP and HTTPS web services and supports Digest, Basic and WSSE HTTP authentication mechanisms.
 
@@ -82,7 +85,7 @@ _For Example:_
 
 
 
-__2. Shell:__
+2. #### shell:
 
 * The ```shell``` module takes the command name followed by a list of space-delimited arguments
 * either a free form command or ```cmd``` parameter is required.
