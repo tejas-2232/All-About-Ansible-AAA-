@@ -5,7 +5,8 @@
 
 > ### We will look into following popular modules.
 
-1. uri
+[1. uri](#uri)
+
 2. shell
 3. lineinfile module
 4. file
@@ -28,7 +29,7 @@
 21. service
 22. systemd
 
-__1. uri:__
+#### __1. uri:__
 
 * Interacts with HTTP and HTTPS web services and supports Digest, Basic and WSSE HTTP authentication mechanisms.
 
