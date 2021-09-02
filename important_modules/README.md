@@ -9,14 +9,22 @@
 
 [2. shell](#shell)
 
-3. lineinfile module
-4. file
-5. service
-6. fetch
-7. get_url
-8. command
-9. block
-10. copy
+[3. lineinfile module](#lineinfile)
+
+[4. file](#file)
+
+[5. service](#service)
+
+[6. fetch](#fetch)
+
+[7. get_url](#get_url)
+
+[8. command](#command)
+
+[9. block](#block)
+
+[10. copy](#copy)
+
 11. set_fact
 12. script
 13. reboot
@@ -147,7 +155,7 @@ _For Examples:_
 
 ```
 
-__3. lineinfile:__ 
+3. #### lineinfile: 
 
 * Used to manage lines in text files
 
@@ -332,7 +340,7 @@ _Example:_
 ```
 
 
-__4. File:__ 
+4. #### file:
 
 * File module is mainly used to deal with files, directories, and symlinks.
 * This module is used to manage properties and set or remove attributes of files, directories, and symlinks.
@@ -458,7 +466,6 @@ __Examples:__
     
 ```
 
-
 ```YAML
 - name: update modification and access time of given file
   file:
@@ -467,7 +474,6 @@ __Examples:__
     modification_time: now
     access_time:now
 ```
-
 
 ```YAML
 - name: recursively change ownership of drirectory
@@ -493,7 +499,7 @@ __Examples:__
     state: absent
 ```
 
-__5. Service:__
+5. #### service:
 
 * Ansible’s service module controls services on remote hosts and is useful for these common tasks:- Start, stop or restart a service on a remote host.
 
@@ -557,7 +563,7 @@ Examples:
     args: eth0
 ```
       
-__6. Fetch:__
+6. #### fetch:
 
 * Fetch module works like copy module, but in reverse.
 
@@ -615,7 +621,7 @@ __Note for fetch module:__
 
 * When running fetch with `become`, the <font color='blue'> `slurp` </font> module will also be used to fetch the contents of the file for determining the remote checksum. This effectively doubles the transfer size, and depending on the file size can consume all available memory on the remote or local hosts causing a `MemoryError`. Due to this it is advisable to run this module without become whenever possible.
 
-__7. get_url:__
+7. #### get_url:
 
 * get_url is used to downloads files from HTTP, HTTPS, or FTP to the remote server.
 * The remote server must have direct access to the remote resource
@@ -690,7 +696,7 @@ __Examples:__
     password: '{{ mysecret }}'
 ```
 
-__8. command:__
+8. #### command:
 
 * It is used to execute commands on targets.
 * The `command` module takes the command name followed by a list of space-delimited arguments.
@@ -733,7 +739,7 @@ __Examples:__
     creates: path/to/database
 ```
 
-__9. Block:__
+9. #### Block:
 
 * Blocks create logical groups of tasks. Blocks also offer ways to handle task errors, similar to exception handling in many programming languages.
   * Grouping tasks with blocks
@@ -907,7 +913,7 @@ handlers:
       msg: "This handler runs even on error"
 ```
 
-__10. copy:__
+10. #### copy:
 
 * Copy module is used to copy files from local or remote machine to a specific location on remote machine.
 * We can also use _fetch_ module to copy files from remote machine to local machine.
