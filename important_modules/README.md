@@ -25,18 +25,29 @@
 
 [10. copy](#copy)
 
-11. set_fact
-12. script
-13. reboot
-14. wait_for
-15. delegate_to
-16. yum
-17. dnf
-18. mail
-19. blockinfile
-20. raw
-21. service
-22. systemd
+[11. set_fact](#set_fact) 
+
+[12. script](#script)
+
+[13. reboot](#reboot)
+
+[14. wait_for](#wait_for)
+
+[15. delegate_to](#delegate_to)
+
+[16. yum](#yum)
+
+[17. dnf](#dnf)
+
+[18. mail](#mail)
+
+[19. blockinfile](#blockinfile)
+
+[20. raw](#raw)
+
+[21. service](#service)
+
+[22. systemd](#systemd)
 
 <hr>
 
@@ -1005,7 +1016,7 @@ __Examples:__
     follow: no
 ```
 
-__11. set_fact:__
+11. #### set_fact:
 
 * we can set new variables using this module.
 
@@ -1018,9 +1029,6 @@ __11. set_fact:__
 * Variables created with set_fact have different precedence depending on whether they are or are not cached.
 
 * This module is also supported for Windows targets.
-
-
-
 
 __Examples:__
 
@@ -1054,7 +1062,7 @@ __Examples:__
 
 ```
 
-__12. script:__
+12. #### script:
 
 * The script module takes the script name followed by a list of space-delimited arguments.
 
@@ -1095,14 +1103,12 @@ __Examples:__
     removes: /removed/file.txt
 ```
 
-
 ```YAML
 - name: run a script using an executable in non-system path
   script: /local/script
   args:
     executable: /path/to/an/executable
 ```
-
 
 ```YAML
 - name: run a script using an executable in system path
@@ -1111,11 +1117,10 @@ __Examples:__
     executable: python3
 ```
 
-__13. reboot:__
+13. #### reboot:
 
 * Reboot a machine, wait for it to shut down, come back up, and respond to commands.
 * For windows target,use win_reboot module.
-
 
 <hr>
 
@@ -1149,7 +1154,7 @@ __Examples:__
     reboot_timeout:3600
 ```
 
-__14 wait_for:__
+14. #### wait_for:
 
 * Wait_for is used to wait for a condition before executing
 
@@ -1244,12 +1249,11 @@ __Example:__
     msg: Timeout to find file /etc/file.cfg
 ```
 
-__15. delegatae_to:__
+15. #### delegatae_to:
 
 * If we want to run any task on any particular machine, we can use ansible delegate_to module
 * The process of hadling over the execution of task to other machine is known as __delegation.__
 * 
-
 
 ```YAML
 - name: install httpd
@@ -1260,8 +1264,7 @@ __15. delegatae_to:__
 ```
 * Above task will run on web.etmll machine
 
-
-__16. yum:__
+16. #### yum:
 
 * Installs, upgrade, downgrades, removes, and lists packages and groups with the yum package manager.
 * This module works on python 2 only.
@@ -1391,7 +1394,7 @@ __Examples:__
     download_only: true
 ```
 
-__17. dnf__
+17. #### dnf
 
 * Installs, upgrade, removes, and lists packages and groups with the dnf package manager.
 * This module works with the support of python3
@@ -1489,7 +1492,7 @@ __Examples__
     state: present
 ```
 
-__18. mail__
+18. #### mail:
 
 * This module is useful for sending emails from playbooks.
 
@@ -1520,7 +1523,7 @@ __Examples:__
 ```
 
 
-__19. blockinfile:__
+19. #### blockinfile:
 
 * This module is used to insert/update/remove a text block surrounded by marker lines.
 
@@ -1591,7 +1594,7 @@ __EXAMPLE:__
     
 ```
 
-__20. raw__
+20. #### raw:
 
  
 * Executes a low-down and dirty SSH command, not going through the module subsystem.
@@ -1631,7 +1634,7 @@ __20. raw__
 
 ```
 
-__21. service:__
+21. #### service:
 
 * service module is used to manage services
 * control services on remote hosts. 
@@ -1688,7 +1691,7 @@ __Examples:__
     args: eth0
 ```
 
-__22. systemd__
+22. #### systemd:
 
 * systemd module is used to control systemd services on remote hosts.
 * It requires A system managed by systemd
