@@ -1,7 +1,7 @@
 # All-About_Ansible-AAA
 
-> Not have enough time to read ansible documentation?
-> Running short of Time? Worry not! Use this repo for your reference.  
+### Not have enough time to read ansible documentation? <br>
+### Running short of Time? <br>  Worry not! Use this repository for your reference.  
 
 ![AnsibleImage](https://blog.knoldus.com/wp-content/uploads/2017/10/ansible_logo.png)
 
