@@ -45,9 +45,7 @@
 
 [20. raw](#raw)
 
-[21. service](#service)
-
-[22. systemd](#systemd)
+[21. systemd](#systemd)
 
 <hr>
 
@@ -345,11 +343,7 @@ _Example:_
     with_items:
     - { dest: '/etc/asnsible/ansible.cfg', regexp: 'config file for ansible', line: 'line changes' }
     - { dest: '/home/device1/remote_server.txt', regexp: 'hello', line: 'world' }
-
-
-
 ```
-
 
 4. #### file:
 
@@ -514,9 +508,13 @@ __Examples:__
 
 * Ansible’s service module controls services on remote hosts and is useful for these common tasks:- Start, stop or restart a service on a remote host.
 
-* For windows systems, Ansible provides a similar module named win_service, which mostly works the same way with limitations of Windows operating systems.
+* For windows systems, Ansible provides a similar module named [win_service](https://docs.ansible.com/ansible/2.9/modules/win_service_module.html#win-service-module), which mostly works the same way with limitations of Windows operating systems.
 
-Examples:
+
+* Supported init systems include BSD init, OpenRC, SysV, Solaris SMF, systemd, upstart.
+
+__Examples:__
+
 
 ```YAML
 - name: Start service httpd, if not started
@@ -1249,7 +1247,7 @@ __Example:__
     msg: Timeout to find file /etc/file.cfg
 ```
 
-15. #### delegatae_to:
+15. #### delegate_to:
 
 * If we want to run any task on any particular machine, we can use ansible delegate_to module
 * The process of hadling over the execution of task to other machine is known as __delegation.__
@@ -1595,7 +1593,6 @@ __EXAMPLE:__
 ```
 
 20. #### raw:
-
  
 * Executes a low-down and dirty SSH command, not going through the module subsystem.
 
@@ -1634,64 +1631,8 @@ __EXAMPLE:__
 
 ```
 
-21. #### service:
 
-* service module is used to manage services
-* control services on remote hosts. 
-* Supported init systems include BSD init, OpenRC, SysV, Solaris SMF, systemd, upstart.
-* For Windows targets, use the [win_service](https://docs.ansible.com/ansible/2.9/modules/win_service_module.html#win-service-module) module instead.
-
-__Examples:__
-
-```YAML
-- name: start service if not started
-  service:
-    name: httpd
-    state: started
-```
-
-```YAML
-- name: Stop service httpd, if started
-  service:
-    name: httpd
-    state: stopped
-```
-
-```YAML
-- name:  Restart service httpd, in all cases
-  service:
-    name: httpd
-    state: restarted
-```
-```YAML
-- name: reload service httpd in all cases
-  service:
-    name: httpd
-    state: reloaded
-```
-```YAML
-- name: Enable service httpd, and not touch the state
-  service:
-    name: httpd
-    enables: yes
-```
-
-```YAML
-- name: start a service foo, bases on running process /usr/bin/foo
-  service:
-    name: foo
-    pattern: /usr/bin/foo
-    state: started
-```
-```YAML
-- name: restart network service for interfacae eth0
-  service:
-    name: network
-    state: restarted
-    args: eth0
-```
-
-22. #### systemd:
+21. #### systemd:
 
 * systemd module is used to control systemd services on remote hosts.
 * It requires A system managed by systemd
