@@ -224,7 +224,7 @@ Issue 2:
 * In the below exaample a line is inserted after ```[defaults]``` in ansible.cfg file. ``'[' and ']'`` are escaped as they are special regex characters.
 
 ```YAML
-- name: example of insertafter uisng lineinfile module
+- name: example of insertafter using lineinfile module
   lineinfile: 
     dest: /etc/ansible/ansible.cfg    # path of file
     # line to be inserted
