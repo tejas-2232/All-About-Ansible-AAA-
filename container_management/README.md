@@ -50,3 +50,11 @@ systemctl enable --now docker
 |docker ps | List the containers|
 |docker images | List the Downloaded images |
   
+
+### Installing Docker with Ansible
+
+* You can write simple play to install Docker on RHEL7 automatically
+* You will need to:
+  * make sure that RHEL7 managed host is configured to get updates for the right channels
+  * make sure that the Docker package is installed
+  * make sure that the Docker service is enables and started
