@@ -1,5 +1,7 @@
 # Automating Container Management with Ansible
 
+<img src="https://www.lpc.co.nz/wp-content/uploads/2015/07/Stacked-containers-at-stern-of-container-ship-at-sea-.jpg">
+
 Here we will need 2 systems,
 1. Ansible controller (any of these RHEL/CentOS/FreeBSD/Ubuntu)
 2. remote host (any of these RHEL/CentOS/FreeBSD/Ubuntu)
