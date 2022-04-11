@@ -37,3 +37,16 @@ systemctl enable --now docker
 
 * Daemon is run as the root user, Docker commands must also be run as root. 
 * Other container runtimes like podman do not require root to run containers
+
+### Docker CLI
+
+**Some of the most common commands are:**
+
+|Command | Description |
+|--------|-------------|
+|docker search "term" |search an image registry for an image related to the term |
+|docker pull "imagename" |download an image or images from a registry|
+|docker run "imagename" | creates the container from the image|
+|docker ps | List the containers|
+|docker images | List the Downloaded images |
+  
