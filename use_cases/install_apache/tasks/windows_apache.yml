@@ -1,0 +1,150 @@
+# check if apache is already installed, if installed then further steps are not executed
+
+- name: get info of apache2.4 service
+  win_service:
+    name: Apache2.4
+  register: service_info
+
+- name: Print a debug message
+  ansible.builtin.debug:
+    msg: "Apache Service is already installed and running.Hence Quitting the job "
+
+#Download zip file
+
+- name: "download zip file"
+  win_get_url:
+    url: https://www.apachelounge.com/download/VS16/binaries/{{ win_zip_name }}
+    dest: C:\
+
+#unzip file
+
+- name: unzip the apache http server file on remote machine
+  win_unzip:
+    src: C:\{{ win_zip_name }}
+    dest: C:\
+
+#remove zip file
+
+- name: remove zip file
+  win_file:
+    path: C:\{{ win_zip_name }}
+    state: absent
+
+
+#change the port
+
+- name: ensure the default apache port is 8080
+  win_lineinfile:
+    path: C:\Apache24\conf\httpd.conf
+    regexp: '^Listen'
+    insertafter: '^#Listen'
+    line: Listen 8080
+
+- name: change port for windows 2019
+  when: ansible_os_family == 'Windows' and ansible_distribution == "Microsoft Windows Server 2019 Standard"
+  win_lineinfile:
+    path: C:\Apache24\conf\httpd.conf
+    regexp: '^Listen'
+    insertafter: '^#Listen'
+    line: Listen {{ port_no }}
+
+#install service when it is absent
+
+- name: install httpd service - it runs from a specific folder
+  win_command: C:\Apache24\bin\httpd.exe -k install
+
+  register: get_output
+
+- name: debug output
+  debug: var=get_output
+
+#Start the service
+
+- name: start apache service
+  win_service:
+    name: Apache2.4
+    start_mode: auto
+    state: started
+
+# using with_items to change whole config file
+
+- name: httpd.conf file changes
+  win_lineinfile:
+    path: C:\Apache24\conf\httpd.conf
+    line: "{{ item.line }} "
+  with_items:
+    - { line: 'TraceEnable off' }
+    - { line: 'ServerTokens Prod' }
+    - { line: 'SSLProtocol -ALL +TLSv1.2' }
+    - { line: 'SSLCipherSuite ALL:!aNULL:!ADH:!eNULL:!LOW:!EXP:RC4+RSA:+HIGH:+MEDIUM' }
+    - { line: '#LoadModule info_module modules/mod_info.so' }
+    - { line: '#<Location /server-status>' }
+    - { line: '# SetHandler server-status' }
+    - { line: '# Order deny,allow' }
+    - { line: '# Deny from all' }
+    - { line: '# Allow from .your_domain.com' }
+    - { line: '#</Location>' }
+    - { line: 'LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" detailed' }
+    - { line: 'CustomLog logs/access.log detailed' }
+
+#change user and group directive
+
+- name: "modify User and Group Directive"
+  win_lineinfile:
+    path: "{{ item.location }}"
+    line: "{{ item.line }}"
+    regexp: "{{ item.exp }}"
+    backrefs: "{{ item.backrefs }}"
+    backup: yes
+  with_items:
+    - { location: 'C:\Apache24\conf\httpd.conf', exp: "User daemon", line: "User apache",  backrefs: "no" }
+    - { location: 'C:\Apache24\conf\httpd.conf', exp: "Group daemon", line: "Group apache",  backrefs: "no" }
+
+# Enable existing mod_ssl module
+
+- name: enable mod_ssl module
+  win_lineinfile:
+    path: C:\Apache24\conf\httpd.conf
+    regexp: "#LoadModule ssl_module modules/mod_ssl.so"
+    line: "LoadModule ssl_module modules/mod_ssl.so"
+
+# register file content in a variable & using it for conditional check
+
+- name: Register a variable
+  win_shell: cat C:\Apache24\conf\httpd.conf
+  register: motd_contents
+
+- name: Use the variable in conditional statement
+  win_shell: echo "motd contains the word hi"
+  when: motd_contents.stdout.find('8080') != -1
+
+#change port for windows 2016
+
+- name: change port to default port  
+  win_lineinfile:
+    path: C:\Apache24\conf\httpd.conf
+    regexp: '^Listen 8080'
+    line: Listen {{ port_no }}
+  when: 
+    - ansible_os_family == 'Windows' and ansible_distribution == "Microsoft Windows Server 2016 Standard"
+    - "{{ port_no }} != 80"    
+    - motd_contents.stdout.find('8080') != -1
+
+#Restart the service
+
+- name: Restart apache service
+  win_service:
+    name: Apache2.4
+    state: restarted
+
+#check status of apache service
+
+- name: check status of apache2.4
+  win_service:
+    name: Apache2.4
+    state: started
+  register: result
+
+- name: print status of above service
+  debug:
+    var: result
