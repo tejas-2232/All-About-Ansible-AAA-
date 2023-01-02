@@ -1,0 +1,13 @@
+- include: windows_apache.yml
+  when:
+    - ansible_os_family == "Windows"
+
+- include: redhat7_apache.yml
+  when:
+    - ansible_os_family == "RedHat"
+    - ansible_distribution_major_version =="7"
+
+- include: redhat8_apache.yml
+  when:
+    - ansible_os_family == "RedHat"
+    - ansible_distribution_major_version =="8"
