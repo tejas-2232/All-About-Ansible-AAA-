@@ -1,0 +1,74 @@
+# installing latest apache version
+
+- name: install latest version of apache
+  yum:
+    name: httpd
+    state: latest
+
+# Enable the service
+
+- name: enable services to start
+  service:
+    name: httpd
+    state: started
+
+# using template to make changes
+
+- name: backup httpd.conf file
+  copy:
+    src: /etc/httpd/conf/httpd.conf
+    dest: /etc/httpd/conf/httpd.conf_bkp
+    remote_src: yes
+    mode: 0755
+
+#  command: mv /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf_bkp using command module
+
+- name: copy file from template to remote machine
+  template:
+    src: httpd.conf
+    dest: /etc/httpd/conf/httpd.conf
+    mode: 0777
+
+# changing the port in httpd.conf file present in /etc dir
+
+- name: ensure the default apache port is 8080
+  lineinfile:
+    path: /etc/httpd/conf/httpd.conf
+    regexp: '^Listen'
+    insertafter: '^#Listen'
+    line: Listen {{ port_no }}
+
+# Load mod_ssl module
+
+- name: add mod_ssl modules
+  lineinfile:
+    path: /etc/httpd/conf/httpd.conf
+    insertafter: '^Include conf.modules.d'
+    line: LoadModule ssl_module modules/mod_ssl.so
+
+# install mod_ssl module
+
+- name: install mod_ssl
+  yum:
+    name: mod_ssl
+    state: present
+
+# restart service
+
+- name: restart httpd service
+  service:
+    name: httpd
+    state: restarted
+
+# check status of apache service
+
+- name: check status of apache
+  service:
+    name: httpd
+    state: started
+  register: result
+  failed_when: result is not defined
+
+- name: print status of above service
+  debug:
+    var: result
