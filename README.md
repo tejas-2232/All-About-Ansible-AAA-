@@ -16,3 +16,5 @@
 ## Ansible playbooks
 
 * Playbooks are nothing but the files where ansible code is written. They use YAML format (Yet Another Markup Language)
+
+**[Automating Container Management with Ansible](container_management/README.md)**
