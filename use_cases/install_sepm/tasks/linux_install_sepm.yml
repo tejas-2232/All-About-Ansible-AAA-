@@ -1,0 +1,22 @@
+---
+
+- name: Create directory
+  file:
+    path: /root/sepm-install
+    state: directory
+    mode: 0755
+    group: root
+    owner: root
+
+- name: download sepm binary file
+  get_url:
+    url: http://binaries/sepm/{{ansible_hostname[:3]}}/latest/SymantecEndpointProtection.zip
+    dest: /root/sepm-install/SymantecEndpointProtection.zip
+    mode: '0755'
+  become: true
+
+- name: unzip binary
+  unarchive:
+    src: /root/sepm-install/SymantecEndpointProtection.zip
+    dest: /root/sepm-install/
+    copy: no
