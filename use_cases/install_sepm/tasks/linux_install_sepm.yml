@@ -20,3 +20,43 @@
     src: /root/sepm-install/SymantecEndpointProtection.zip
     dest: /root/sepm-install/
     copy: no
+
+- name: ensure a list of required packages is installed
+  yum:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - libX11.so.6
+    - glibc.i686
+
+- name: execute sepm install.sh script
+  shell:
+    sh /root/sepm-install/install.sh -i
+  register: script_result
+  become: true
+  retries: 5
+  until: script_result is succeeded
+  ignore_errors: true
+
+- reboot:
+  ignore_errors: true
+  when: script_results.rc == 0
+
+- name: wait for port to open
+  wait_for:
+    host: "{{ ansible_host | default(inventory_hostname) }}"
+    ports: "{{ansible_port | default(22) }}"
+    state: started
+  delegate_to: localhost
+
+- name: check if Symantec is running
+  shell:
+    sh service {{ item }} status
+  register: service_status
+  retries: 10
+  until: service_status is succeeded
+  with_items:
+    - smcd
+    - rtvscand
+    - symcfgd
+  ignore_errors: true
