@@ -1,0 +1,19 @@
+---
+
+- name: create directory structure
+  win_file:
+    path: C:\SEPM-Win
+    state: directory
+
+- name: download SEPM binary
+  win_get_url:
+    url: http://{{ repourl }}/Binaries/{{ ansible_hostname[:3] | lower }}/latest/win/setup.exe
+    dest: C:\SEPM-Win\setup.exe
+  register: download_result
+  retries: 10
+  until: download_result.status_code is defined and download_result.status_code == 200
+
+- name: execute sepm-win.exe
+  win_shell: Start-Process -FilePath "setup.exe" -Verb runAs -Wait
+  args:
+    chdir: C:\SEPM-Win
