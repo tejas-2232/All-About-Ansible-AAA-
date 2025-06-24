@@ -17,3 +17,19 @@
   win_shell: Start-Process -FilePath "setup.exe" -Verb runAs -Wait
   args:
     chdir: C:\SEPM-Win
+
+- name: reboot the VM
+  win_reboot:
+  ignore_errors: true
+
+- name: wait for ports to open
+  wait_for:
+    host: "{{ ansible_host | default(inventory_hostname }}"
+    port: "{{ ansible_port | default(5985)}}"
+    state: started
+  delegate_to: localhost
+
+- name: check Syamntec endpoint protection installed or not
+  win_service:
+    name: Symantec Endpoint Protection
+    state: started
