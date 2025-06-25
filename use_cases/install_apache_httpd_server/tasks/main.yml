@@ -1,0 +1,12 @@
+---
+
+- name: windows_apache_httpd_server.yml
+  include_tasks: windows_apache_httpd_server.yml
+  when:
+    - ansible_os_family == "Windows"
+
+- name: ubuntu18_apache_httpd_server.yml
+  include_tasks: ubuntu18_apache_httpd_server.yml
+  when:
+    - ansible_os_family == "Ubuntu"
+    - ansible_distribution_major_version =="18.04"
