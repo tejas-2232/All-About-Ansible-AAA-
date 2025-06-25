@@ -1,0 +1,32 @@
+---
+
+- name: check apache httpd status
+  service:
+    name: httpd
+  register: service_state_info
+  become: yes
+  vars:
+    ansible_become_user: root
+    ansible_become_method: sudo
+    ansible_sudo_pass: "{{ ansible_password}}"
+
+ - name: print when it is installed
+   block:
+     - debug:
+         msg: Apache httpd is already installed on server
+        when: ("'running' in service_state_info.status.SubState") or ("'exited' in service_state_info.status.SubState")
+    when:
+      - "'active' in service_state_info.status.ActiveState"
+      - "'dead' not in service_state_info.status.SubState"
+
+- name: install and configure httpd
+  block:
+    - name: install latest version of apache
+      apt:
+        name: apache2
+        state: latest
+      become: yes
+      vars:
+        ansible_become_user: root
+        ansible_become_method: sudo
+        ansible_sudo_pass: "{{ ansible_password}}"
