@@ -1,0 +1,6 @@
+---
+
+- name: get api token
+  shell: |
+    export AZURE_CLI_DISABLE_CONNECTION_VERIFICATION=1
+    az account get-access-token | grep accessToken | awk -F '{print $2}' | sed 's|[ \",]||g'
