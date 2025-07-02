@@ -4,3 +4,15 @@
   shell: |
     export AZURE_CLI_DISABLE_CONNECTION_VERIFICATION=1
     az account get-access-token | grep accessToken | awk -F '{print $2}' | sed 's|[ \",]||g'
+  register: get_access-token
+  delegate_to: localhost
+
+- name: Get secret from azure vault
+  azure.azcollection.azure_rm_keyvaultsecret_info:
+    vault_uri: "{{ azure_vault_url }}"
+    name: "{{ item.cred }}"
+  with_items:
+    - { cred: automation-a }
+    - { cred: automation-b }
+  delegate_to: localhost
+  register: info
