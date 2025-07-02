@@ -1,1 +1,1 @@
-* This role creates the SQL managed instabce and configure it with required parameters
+* This role creates the SQL managed instance and configures it with the required parameters
