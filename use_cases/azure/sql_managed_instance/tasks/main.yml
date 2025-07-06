@@ -4,7 +4,7 @@
   shell: |
     export AZURE_CLI_DISABLE_CONNECTION_VERIFICATION=1
     az account get-access-token | grep accessToken | awk -F '{print $2}' | sed 's|[ \",]||g'
-  register: get_access-token
+  register: get_access_token
   delegate_to: localhost
 
 - name: Get secret from azure vault
@@ -16,3 +16,38 @@
     - { cred: automation-b }
   delegate_to: localhost
   register: info
+
+# set the username and password
+
+- name: set the username and password
+  set_fact:
+    username: "{{ info.results.0.secrets.0.secret }} "
+    password: "{{ info.results.1.secrets.0.secret }} "
+
+- name: print instance name
+  debug:
+    msg: "{{ instance_name }}"
+
+# send api call to create managed instance
+
+- name: send req to create the managed instance
+  uri:
+    url: https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.Sql/managedInstances/{{instance_name}}?api-version=2024-04-01-preview
+    method: PUT
+    force_basic_auth: yes
+    follow_redirects: yes
+    timeout: 3600
+    body: "{{ json }}"
+    body_format: json
+    return_content: tes
+    headers:
+      Authorization: "Bearer {{ get_access_token.stdout_lines[0] }}"
+      Content-Type: application/json
+    validate_certs: no
+    status_code: 201
+  register: request_status
+  delegate_to: localhost
+
+- name: debug request status
+  debug:
+    msg: "{{ request_status }}"
