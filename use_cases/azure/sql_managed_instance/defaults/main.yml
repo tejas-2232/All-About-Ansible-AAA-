@@ -3,3 +3,6 @@
 
 subscriptionId: 45678fdf678-4567d-76556-r63-dg678uyt6
 resourceGroupName: rg-networkingadmin
+
+vnetName: vn-dev-01
+subnetName: sn-managedsql
