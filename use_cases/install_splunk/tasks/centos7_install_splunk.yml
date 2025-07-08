@@ -1,0 +1,13 @@
+--- 
+
+- name: check if soiurce files exists
+  ansible.builtin.stat:
+    path: "{{ splunk_dir}}"
+  delegate_to: localhost
+  register: source_folders
+
+- name: download source files from azure
+  block:
+    - name: print source files doesn't exist
+      ansible.builtin.debug:
+        msg: "Source files does not exist. Proceeding to downloading them."

@@ -1,0 +1,7 @@
+---
+
+- name: centos7_install_splunk.yml
+  include_tasks: centos7_install_splunk.yml
+  when:
+    - ansible_distribution == "CentOS"
+    - ansible_distribution_major_version =="7"
