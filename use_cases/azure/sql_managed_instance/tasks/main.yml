@@ -28,6 +28,8 @@
   debug:
     msg: "{{ instance_name }}"
 
+# set json by using set_fact module
+
 # send api call to create managed instance
 
 - name: send req to create the managed instance
