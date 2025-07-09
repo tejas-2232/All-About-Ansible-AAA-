@@ -23,3 +23,13 @@
       with_items: "{{ splunk_all_fixed_file_paths }}"
       register: downloading-file
       become: yes
+      vars:
+        ansible_sudo_pass: "{{ ansible_password }}"      
+
+  rescue:
+    - name: print error while downloading files
+      ansible.builtin.debug:
+        msg: "Error while downloading files. Error:\n {{ ansible_failed_result }}"
+  delegate_to: localhost
+  when:
+    - not source_folders.stat.exists        
