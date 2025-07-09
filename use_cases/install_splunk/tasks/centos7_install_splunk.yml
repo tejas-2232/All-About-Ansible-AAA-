@@ -11,3 +11,15 @@
     - name: print source files doesn't exist
       ansible.builtin.debug:
         msg: "Source files does not exist. Proceeding to downloading them."
+    
+    - name: download files 
+      azure_rm_storageblob:
+        resource_group: "{{ cf_resource_group }}"
+        storage_account_name: "{{ storage_acc_name }}"
+        container: "{{ container_name }}"
+        blob: "{{ item }}"
+        dest: "{{ splunk_source_folder_path }}/{{ item }}"
+        subscription_id: "{{ subscriptionId }}"
+      with_items: "{{ splunk_all_fixed_file_paths }}"
+      register: downloading-file
+      become: yes
