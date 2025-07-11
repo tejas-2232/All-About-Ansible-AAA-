@@ -32,4 +32,30 @@
         msg: "Error while downloading files. Error:\n {{ ansible_failed_result }}"
   delegate_to: localhost
   when:
-    - not source_folders.stat.exists        
+    - not source_folders.stat.exists
+
+- name: copy files from target server if does not exist
+  copy:
+    src: "{{ splunk_dir }}"
+    dest: "{{ working_dir }}"
+  become: yes
+  vars:
+    ansible_sudo_pass: "{{ ansible_password }}"
+
+- name: check splunk status
+  service:
+    name: splunk
+  register: service_info_splunk
+  become: yes
+  vars:
+    ansible_sudo_pass: "{{ ansible_password }}"
+
+- name: print splunk status when it is installed
+  block:
+    - debug:
+        msg: "Splunk is already installed on server"
+      when: ("'running' in service_info_splunk.status.Substate") or ("'exited' in service_info_splunk.status.Substate")
+  when:
+    - "'active' in service_info_splunk.status.ActiveState"
+    - "'dead' not in service_info_splunk.status.Substate"
+ 
