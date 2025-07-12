@@ -58,4 +58,23 @@
   when:
     - "'active' in service_info_splunk.status.ActiveState"
     - "'dead' not in service_info_splunk.status.Substate"
- 
+
+- name: installl splunk if that is not present 
+  block:
+    - name: Install splunk package
+      yum:
+        name: "{{ splunk_working_dir }}/{{ splunk_rpm }}"
+        state: present
+        disable_gpg_check: True
+      become: yes
+      vars:
+        ansible_sudo_pass: "{{ ansible_password }}"
+
+    - name: splunk add-ons and configuration
+      copy:
+        src: "{{ splunk_working_dir }}/{{ splunk_conf_dir}}"
+        dest: /opt/splunkforwarder/etc/apps
+        remote_src: yes
+      become: yes
+      vars:
+        ansible_sudo_pass: "{{ ansible_password }}"      
