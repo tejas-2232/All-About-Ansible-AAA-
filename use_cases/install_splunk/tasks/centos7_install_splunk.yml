@@ -70,11 +70,27 @@
       vars:
         ansible_sudo_pass: "{{ ansible_password }}"
 
-    - name: splunk add-ons and configuration
-      copy:
-        src: "{{ splunk_working_dir }}/{{ splunk_conf_dir}}"
-        dest: /opt/splunkforwarder/etc/apps
-        remote_src: yes
-      become: yes
-      vars:
-        ansible_sudo_pass: "{{ ansible_password }}"      
+- name: splunk add-ons and configuration
+  copy:
+    src: "{{ splunk_working_dir }}/{{ splunk_conf_dir}}"
+    dest: /opt/splunkforwarder/etc/apps
+    remote_src: yes
+  become: yes
+  vars:
+    ansible_sudo_pass: "{{ ansible_password }}"   
+
+- name: Change file ownership, group and permissions
+  file:
+    path: "/opt/splunkforwarder/etc/apps/{{ splunk_conf_dir}}"
+    owner: splunk
+  become: yes
+  vars:
+    ansible_sudo_pass: "{{ ansible_password }}"
+
+- name: install python3-pip
+  yum:
+    name: python3-pip
+    state: present
+  become: yes
+  vars:
+    ansible_sudo_pass: "{{ ansible_password }}"
