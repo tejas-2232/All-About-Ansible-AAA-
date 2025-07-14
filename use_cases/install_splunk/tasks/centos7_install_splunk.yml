@@ -94,3 +94,27 @@
   become: yes
   vars:
     ansible_sudo_pass: "{{ ansible_password }}"
+
+
+- name: install pexpect
+  pip:
+    name: pexpect>=3.3
+    state: latest
+    executable: pip3
+  become: yes
+  vars:
+    ansible_sudo_pass: "{{ ansible_password }}"
+    ansible_python_interpreter: /usr/bin/python3
+
+- name: Accept splunk license.
+  expect:
+    command: /opt/splunkforwarder/bin/splunk start --accept-license
+    timeout: 60
+    responses:
+       (.*)Please enter an administrator username(.*): "{{ ansible_user }}"
+       (.*)Please enter a new password(.*): "{{ ansible_password }}"
+       (.*)Please confirm new password(.*): "{{ ansible_password }}"
+  become: yes
+  vars:
+    ansible_sudo_pass: "{{ ansible_password }}"  
+    ansible_python_interpreter: /usr/bin/python3
