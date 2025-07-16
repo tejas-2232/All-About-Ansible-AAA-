@@ -118,3 +118,9 @@
   vars:
     ansible_sudo_pass: "{{ ansible_password }}"  
     ansible_python_interpreter: /usr/bin/python3
+
+- name: add splunk to boot process status
+  command: /opt/splunkforwarder/bin/splunk enable boot-start
+  become: yes
+  vars:
+    ansible_sudo_pass: "{{ ansible_password }}"
