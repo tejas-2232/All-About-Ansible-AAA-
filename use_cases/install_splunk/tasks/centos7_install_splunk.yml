@@ -70,57 +70,72 @@
       vars:
         ansible_sudo_pass: "{{ ansible_password }}"
 
-- name: splunk add-ons and configuration
-  copy:
-    src: "{{ splunk_working_dir }}/{{ splunk_conf_dir}}"
-    dest: /opt/splunkforwarder/etc/apps
-    remote_src: yes
-  become: yes
-  vars:
-    ansible_sudo_pass: "{{ ansible_password }}"   
+    - name: splunk add-ons and configuration
+      copy:
+        src: "{{ splunk_working_dir }}/{{ splunk_conf_dir}}"
+        dest: /opt/splunkforwarder/etc/apps
+        remote_src: yes
+      become: yes
+      vars:
+        ansible_sudo_pass: "{{ ansible_password }}"   
 
-- name: Change file ownership, group and permissions
-  file:
-    path: "/opt/splunkforwarder/etc/apps/{{ splunk_conf_dir}}"
-    owner: splunk
-  become: yes
-  vars:
-    ansible_sudo_pass: "{{ ansible_password }}"
+    - name: Change file ownership, group and permissions
+      file:
+        path: "/opt/splunkforwarder/etc/apps/{{ splunk_conf_dir}}"
+        owner: splunk
+      become: yes
+      vars:
+        ansible_sudo_pass: "{{ ansible_password }}"
 
-- name: install python3-pip
-  yum:
-    name: python3-pip
-    state: present
-  become: yes
-  vars:
-    ansible_sudo_pass: "{{ ansible_password }}"
+    - name: install python3-pip
+      yum:
+        name: python3-pip
+        state: present
+      become: yes
+      vars:
+        ansible_sudo_pass: "{{ ansible_password }}"
 
 
-- name: install pexpect
-  pip:
-    name: pexpect>=3.3
-    state: latest
-    executable: pip3
-  become: yes
-  vars:
-    ansible_sudo_pass: "{{ ansible_password }}"
-    ansible_python_interpreter: /usr/bin/python3
+    - name: install pexpect
+      pip:
+        name: pexpect>=3.3
+        state: latest
+        executable: pip3
+      become: yes
+      vars:
+        ansible_sudo_pass: "{{ ansible_password }}"
+        ansible_python_interpreter: /usr/bin/python3
 
-- name: Accept splunk license.
-  expect:
-    command: /opt/splunkforwarder/bin/splunk start --accept-license
-    timeout: 60
-    responses:
-       (.*)Please enter an administrator username(.*): "{{ ansible_user }}"
-       (.*)Please enter a new password(.*): "{{ ansible_password }}"
-       (.*)Please confirm new password(.*): "{{ ansible_password }}"
-  become: yes
-  vars:
-    ansible_sudo_pass: "{{ ansible_password }}"  
-    ansible_python_interpreter: /usr/bin/python3
+    - name: Accept splunk license.
+      expect:
+        command: /opt/splunkforwarder/bin/splunk start --accept-license
+        timeout: 60
+        responses:
+           (.*)Please enter an administrator username(.*): "{{ ansible_user }}"
+           (.*)Please enter a new password(.*): "{{ ansible_password }}"
+           (.*)Please confirm new password(.*): "{{ ansible_password }}"
+      become: yes
+      vars:
+        ansible_sudo_pass: "{{ ansible_password }}"  
+        ansible_python_interpreter: /usr/bin/python3
 
-- name: add splunk to boot process status
-  command: /opt/splunkforwarder/bin/splunk enable boot-start
-  become: yes
-  vars:
-    ansible_sudo_pass: "{{ ansible_password }}"
+    - name: add splunk to boot process status
+      command: /opt/splunkforwarder/bin/splunk enable boot-start
+      become: yes
+      vars:
+        ansible_sudo_pass: "{{ ansible_password }}"
+    
+    - name: start splunk service
+      service:
+        name: splunk
+        state: started
+      register: splunk_status
+      become: yes
+      vars:
+        ansible_sudo_pass: "{{ ansible_password }}"
+  when: "'dead' in service_info_splunk.status.Substate"
+  rescue:
+    - name: print when splunk is installed 
+      debug:
+        msg: Error encountered while installation of splunk. Kindly verify the splunk installer on target server.
+  
