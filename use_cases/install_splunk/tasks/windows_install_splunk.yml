@@ -1,0 +1,36 @@
+---
+- name: check if source files exists
+  ansible.builtin.stat:
+    path: "{{ splunk_dir }}"
+  delegate_to: localhost
+  register: source_folders
+
+- name: download source files from azure
+  block:
+    - name: print source files doesn't exist
+      ansible.builtin.debug:
+        msg: "Source files does not exist. Proceeding to downloading them."
+
+    - name: download all files
+      azure_rm_storageblob:
+        resource_group: "{{ cf_resource_group }}"
+        storage_account_name: "{{ cf_storage_acc }}"
+        container: "{{ cf_container }}"
+        blob: "{{ item }}"
+        dest: "{{ splunk_source_folder_path }}/{{ item }}"
+        subscription_id: "{{ subscriptionId }}"
+      with_items: "{{ splunk_all_fixed_file_paths }}"
+      register: downloading_file
+      become: yes
+      vars:
+        ansible_become_user: root
+        ansible_become_method: sudo
+        ansible_sudo_pass: "{{ ansible_password }}"
+
+  rescue:
+    - name: print error while downloading files
+      ansible.builtin.debug:
+        msg: "Error while downloading files. Error:\n {{ ansible_failed_result }}"
+  delegate_to: localhost
+  when:
+    - not source_folders.stat.exists
