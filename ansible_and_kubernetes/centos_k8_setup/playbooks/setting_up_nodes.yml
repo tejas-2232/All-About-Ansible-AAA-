@@ -1,0 +1,76 @@
+---
+# This playbook sets up the basic prerequisites for Kubernetes on all nodes (master and worker)
+# It configures the Kubernetes repository, installs required packages, and sets up networking
+
+- hosts: all
+  vars_files:
+    - env_variables  # Contains variables like packages, services, and ports lists
+  tasks:
+    # Step 1: Configure Kubernetes YUM repository
+    - name: creating a repo file for k8s
+      file:
+        path: /etc/yum.repos.d/kubernetes.repo
+        state: touch
+    
+    # Add the official Google Kubernetes repository configuration
+    # This enables installation of kubeadm, kubelet, and kubectl packages
+    - name: adding repo details in kubernetes repo file
+      blockinfile:
+        path: /etc/yum.repos.d/kubernetes.repo
+        block: |
+          [kubernetes]
+          name=Kubernetes
+          baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-$basearch
+          enabled=1
+          gpgcheck=1
+          repo_gpgcheck=1
+          gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+    
+    # Install essential packages for Kubernetes cluster
+    # Typically includes: docker, kubeadm, kubelet, kubectl
+    # Package list is defined in env_variables file
+    - name: installing required packages
+      yum:
+        name: "{{item}}"
+        state: present
+      with_items: "{{ packages }}"
+    
+    # Start and enable critical services for Kubernetes operation
+    # Typically includes: docker, kubelet services
+    # Service list is defined in env_variables file
+    - name: starting and enabling required services
+      service:
+        name: "{{item}}"
+        state: started
+        enabled: yes  # Ensures services start on boot
+      with_items: "{{ services }}"
+
+    # Configure firewall to allow Kubernetes communication
+    # Opens necessary ports for cluster communication (API server, etcd, kubelet, etc.)
+    # Port list is defined in env_variables file
+    - name: allow network ports in firewalld
+      firewalld:
+        port: "{{item}}"
+        state: enabled
+        permanent: yes  # Survives firewall restarts
+        immediate: yes  # Takes effect immediately
+      with_items: "{{ ports }}"
+
+    # Enable bridge network filtering for Kubernetes networking
+    # Required for proper pod-to-pod communication and network policies
+    # This setting allows iptables to process bridged packets
+    - name: enabling bridge firewall rule
+      shell: "echo '1' > /proc/sys/net/bridge/bridge-nf-call-iptables"
+
+    # Apply all firewall configuration changes
+    - name: reloading firewalld
+      firewalld:
+        state: reloaded
+
+    # Restart firewalld service to ensure all changes are active
+    # This ensures the new port configurations are properly loaded
+    - name: restarting firewalld
+      service:
+        name: firewalld
+        state: restarted
+        enabled: yes  # Ensure firewalld starts on boot

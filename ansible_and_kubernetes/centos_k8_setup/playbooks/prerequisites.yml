@@ -1,0 +1,16 @@
+--- 
+# This playbook sets up the basic prerequisites for Kubernetes on all nodes (master and worker)
+# It disables swap and comments swap entries in /etc/fstab
+
+- hosts: all
+  vars_files:
+    - env_variables
+  tasks:
+    - name: disable swap on all nodes
+      shell: swapoff -a
+
+    - name: commenting swap entries in /etc/fstab
+      replace:
+        path: /etc/fstab
+        regexp: '(.*swap.*)'
+        replace: '#\1'

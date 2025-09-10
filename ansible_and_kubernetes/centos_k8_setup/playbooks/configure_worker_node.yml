@@ -1,0 +1,21 @@
+---
+# This playbook configures a worker node to join the Kubernetes cluster
+# It copies the join token from the master node and joins the worker node to the cluster
+
+- hosts: kubernetes-worker-nodes
+  vars_files:
+    - env_variables
+  tasks:
+    - name: copying token to worker node
+      copy: 
+        src: {{token_file}}
+        dest: join_token
+        mode: "0644"
+
+    - name: Joining worker nodes with kubernetes master
+      shell: "`grep -i 'kubeadm join' join_token`" # this command is used to get the join command from the token file
+    
+    - name: removing token file
+      file: 
+        path: join_token
+        state: absent

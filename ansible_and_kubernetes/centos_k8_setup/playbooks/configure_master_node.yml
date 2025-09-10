@@ -1,0 +1,23 @@
+---
+- hosts: kubernetes-master-nodes
+  vars_file:
+    - env_variables
+  tasks:
+    - name: pull images required for setting up kubernetes cluster
+      shell: kubeadm config images pull
+
+    - name: initialize kubernetes cluster
+      shell: kubeadm init --apiserver-advertise-address {{ad_addr}} --pod-network-cidr={{cidr_value}}
+
+    - name: storing logs and generated token for future purpose
+      local_action: copy content="{{output.stdout}}" dest={{token_file}}
+
+    - name: copying required files
+      shell: |
+        mkdir -p $HOME/.kube
+        sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+        sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+    - name: install network add-on
+      ansible.builtin.command: kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+
