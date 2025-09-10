@@ -1,21 +1,22 @@
 # All-About_Ansible-AAA
 
-### Not have enough time to read ansible documentation? <br>
-### Running short of Time? <br>  Worry not! Use this repository for your reference.  
+### Not have enough time to read Ansible documentation? <br>
+### Running short of Time? Worry not! Use this repository for your reference.  
 
-![AnsibleImage](https://blog.knoldus.com/wp-content/uploads/2017/10/ansible_logo.png)
 
-## What is ansible?
+<img width="800" height="240" alt="image" src="https://github.com/user-attachments/assets/f421bab8-191a-4eb5-92b6-841d434b28b2" />
 
-* It is open source IT configuration Management, Deployment & Orchestration tool.
+## What is Ansible?
+
+* It is an open source IT configuration Management, Deployment & Orchestration tool.
 
 * It aims to provide large productivity gains to a wide variety of automation challenges.
 
-* Ansible is very simple to use and yet powerful enough to automate complex multi-tier application enviroments. 
+* Ansible is very simple to use and yet powerful enough to automate complex multi-tier application environments. 
 
 ## Ansible playbooks
 
-* Playbooks are nothing but the files where ansible code is written. They use YAML format (Yet Another Markup Language)
+* Playbooks are nothing but the files where Ansible code is written. They use YAML format (Yet Another Markup Language)
 
 <hr> <hr>
 
