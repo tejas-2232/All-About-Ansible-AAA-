@@ -1,5 +1,8 @@
 # How to Install Kubernetes Cluster using Ansible Playbook Automation
 
+<img width="680" height="480" alt="image" src="https://github.com/user-attachments/assets/fb301c0b-3e56-4c06-8c0f-0bf2780bc634" />
+
+
 ## Ansible playbooks to setup a kubernetes cluster
 
 * This repo has ansible playbooks to setup a kubernetes cluster on centos.
@@ -8,7 +11,7 @@
 ### Setup instructions
 
 1. make the servers ready
-2. make entry of each host in /etc/hosts file for name resolution
+2. make entry of each host in `/etc/hosts` file for name resolution
 3. make sure k8 master and worker nodes are reachable between each other
 4. clone this repo 
 5. add all k8 nodes entreis hosts file in centos dir
@@ -28,7 +31,7 @@
 
 ## Files used
 
-* `ansible.cfg`: anisble config file  
+* `ansible.cfg`: ansible config file  
 
 * `hosts`: Ansible Inventory File
 
