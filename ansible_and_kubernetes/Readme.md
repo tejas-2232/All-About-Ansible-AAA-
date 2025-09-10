@@ -5,7 +5,7 @@
 * This repo has ansible playbooks to setup a kubernetes cluster on centos.
 * Its fully automated with one master node and two worker nodes.
 
-### setup instructions
+### Setup instructions
 
 1. make the servers ready
 2. make entry of each host in /etc/hosts file for name resolution
@@ -26,21 +26,21 @@
      `kubectl get nodes`
 
 
-## files used
+## Files used
 
-* ansible.cfg: anisble config file  
+* `ansible.cfg`: anisble config file  
 
-* hosts: Ansible Inventory File
+* `hosts`: Ansible Inventory File
 
-* env_variables: Main environment variable file where we have to specify based on our environment.
+* `env_variables`: Main environment variable file where we have to specify based on our environment.
 
-* settingup_kubernetes_cluster.yml: Ansible Playbook to perform prerequisites ready, setting up nodes, configure master node.
+* `settingup_kubernetes_cluster.yml`: Ansible Playbook to perform prerequisites ready, setting up nodes, configure master node.
 
-* configure_worker_nodes.yml: Ansible Playbook to join worker nodes with master node.
+* `configure_worker_nodes.yml`: Ansible Playbook to join worker nodes with master node.
 
-* clear_k8s_setup.yml: Ansible Playbook helps to delete entire configurations from all nodes.
+* `clear_k8s_setup.yml` : Ansible Playbook helps to delete entire configurations from all nodes.
 
-* playbooks: holds all playbooks.
+* `playbooks`: holds all playbooks.
 
 
 ### There are also other ways to setup a kubernetes cluster using ansible playbooks. Need some modification to dir structure, files and some ansible modules to be used.
