@@ -1,3 +1,14 @@
+# What this readme is about? Covers the following topics:
+
+[1. Intro to ansible for kubernetes](#intro-to-ansible-for-kubernetes)
+
+[2. Using Kubernetes dynamic inventory plugin](#using-kubernetes-dynamic-inventory-plugin)
+
+[3. Creating K8S object](#creating-k8s-object)
+
+[4. Kubernetes.core.helm Module - Manages Kubernetes packages with the Helm package manager](#kubernetescorehelm-module---manages-kubernetes-packages-with-the-helm-package-manager)
+
+
 # Intro to ansible for kubernetes
 
 ## Introduction 
@@ -9,18 +20,19 @@ To install the collection, run the following:
 $ ansible-galaxy collection install kubernetes.core
 ```
 
-## requirements
+## Requirements
 To use the modules, you’ll need the following:
 
 Ansible 2.9.17 or latest installed
 
 [Kubernetes Python client](https://pypi.org/project/kubernetes/) installed on the host that will execute the modules.
 
-## installation
+## Installation
 
 The Kubernetes modules are part of the Ansible Kubernetes collection.
 
 To install the collection, run the following:
+
 ```bash
 $ ansible-galaxy collection install kubernetes.core
 ```
@@ -87,14 +99,14 @@ connections:
 
 # Creating K8S object
 
-## introduction
+## Introduction
 
-how to utilize Ansible to create Kubernetes objects such as Pods, Deployments, and Secrets.
+How to utilize Ansible to create Kubernetes objects such as Pods, Deployments, and Secrets.
 
-## Scenario Requirements
+## Scenario Requirements
 
 * Software
-- - Ansible 2.9.17 or later must be installed
+  - Ansible 2.9.17 or later must be installed
   -  The Python module kubernetes must be installed on the Ansible controller (or Target host if not executing against localhost)
   - Kubernetes Cluster
   - Kubectl binary installed on the Ansible controller
@@ -136,7 +148,7 @@ In this use case / example, we will create a Pod in the given Kubernetes Cluster
 
 * Since Ansible utilizes the Kubernetes API to perform actions, in this case we will be connecting directly to the Kubernetes cluster
 
-## what to expect
+## What to expect
 
 * The playbook will create a Pod in the given Kubernetes Cluster.
 * The Pod will be named `utilitypod-1` and will be in the `default` namespace.
@@ -215,7 +227,7 @@ You will see a bit of JSON output after this playbook completes. This output sho
 }
 ```
 
-# Kubernetes.core.helm Module - Manges Kubernetes packages with the Helm package manager
+# Kubernetes.core.helm Module - Manages Kubernetes packages with the Helm package manager
 
 * Install, upgrade, delete packages with the Helm package manager.
 
